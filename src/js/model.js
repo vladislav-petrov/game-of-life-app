@@ -66,21 +66,29 @@ const calcNextGen = function() {
   state.generationCount++;
 }
 
-const getAliveNeighbours = function(y, x) {
-  return NEIGHBOUR_OFFSETS.reduce(function(acc, offset) {
-    const { y: maxY, x: maxX } = state.field.axes;
+const getNeighbours = function(x, y) {
+  const neighbours = {};
 
-    const neighbourY = calcNewCoord(y + offset.y, maxY);
+  NEIGHBOUR_OFFSETS.forEach(function(offset) {
+    const { x: maxX, y: maxY } = state.field.axes;
+
     const neighbourX = calcNewCoord(x + offset.x, maxX);
-    const neighbour = state.field.cells[`${neighbourY}_${neighbourX}`];
+    const neighbourY = calcNewCoord(y + offset.y, maxY);
 
-    return acc + neighbour;
-  }, 0);
+    const neighbourKey = `${neighbourY}_${neighbourX}`;
+    const neighbourValue = state.field.cells[neighbourKey];
+
+    neighbours[neighbourKey] = neighbourValue;
+  });
+
+  return neighbours;
 }
 
 const updateCell = function(key, value) {
   const [y, x] = key.split('_');
-  const aliveNeighbours = getAliveNeighbours(+y, +x);
+
+  const neighbours = getNeighbours(+x, +y);
+  const aliveNeighbours = Object.values(neighbours).filter((el) => el).length;
 
   // Клетка жива и имеет 2 или 3 живых соседа
   if (value && [2, 3].includes(aliveNeighbours)) return 1;
