@@ -5,7 +5,7 @@ class FieldView extends View {
 
   _generateMarkup() {
     const { x, y } = this._data.axes;
-    const { cells } = this._data;
+    const { curCells } = this._data.cells;
 
     return (
       `
@@ -19,7 +19,7 @@ class FieldView extends View {
 
                     return (
                       `
-                        <td id="${key}">${cells[key]}</td>
+                        <td id="${key}">${curCells[key]}</td>
                       `
                     );
                   }).join('')}

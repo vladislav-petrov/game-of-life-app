@@ -1,6 +1,6 @@
 const X_AXIS = 10;
 const Y_AXIS = 10;
-const MIN_DIM = 10;
+const MIN_DIM = 6;
 
 const NEIGHBOUR_OFFSETS = [
   { x: -1, y: -1 }, 
@@ -26,4 +26,10 @@ const GLIDER_PATTERN = {
   '3_3': 1
 };
 
-export { X_AXIS, Y_AXIS, MIN_DIM, GLIDER_PATTERN, NEIGHBOUR_OFFSETS };
+export {
+  X_AXIS,
+  Y_AXIS,
+  MIN_DIM,
+  GLIDER_PATTERN,
+  NEIGHBOUR_OFFSETS
+};

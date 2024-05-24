@@ -11,7 +11,7 @@ const controlInput = function(data) {
   setInterval(function() {
     model.calcNextGen();
     fieldView.render(model.state.field);
-  }, 100);
+  }, 500);
 }
 
 const init = function() {

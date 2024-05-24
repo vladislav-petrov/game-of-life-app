@@ -1,6 +1,15 @@
-import { X_AXIS, Y_AXIS, GLIDER_PATTERN, NEIGHBOUR_OFFSETS } from './config.js';
+import {
+  X_AXIS,
+  Y_AXIS,
+  GLIDER_PATTERN,
+  NEIGHBOUR_OFFSETS
+} from './config.js';
 
-import { calcNewCoord } from './helpers.js';
+import {
+  getNewCoord,
+  getAliveNeighbours,
+  getNewCellValue
+} from './helpers.js';
 
 const state = {
   field: {
@@ -8,7 +17,10 @@ const state = {
       x: X_AXIS,
       y: Y_AXIS
     },
-    cells: {}
+    cells: {
+      curCells: {},
+      nextCells: {}
+    }
   },
   generationCount: 0
 };
@@ -23,7 +35,7 @@ const generateField = function({ x, y }) {
 
   for (let i = 1; i <= +y; i++) {
     for (let j = 1; j <= +x; j++) {
-      state.field.cells[`${i}_${j}`] = 0;
+      state.field.cells.curCells[`${i}_${j}`] = 0;
     }
   }
 }
@@ -38,7 +50,7 @@ const applyPattern = function(pattern) {
     }
     case 'glider': {
       Object.entries(GLIDER_PATTERN).forEach(function([key, value]) {
-        state.field.cells[key] = value;
+        state.field.cells.curCells[key] = value;
       });
 
       break;
@@ -56,13 +68,12 @@ const calcFirstGen = function(pattern) {
 }
 
 const calcNextGen = function() {
-  const tempCells = {};
-
-  Object.entries(state.field.cells).forEach(function([key, value]) {
-    tempCells[key] = updateCell(key, value);
+  Object.entries(state.field.cells.curCells).forEach(function([key, value]) {
+    state.field.cells.nextCells[key] = updateCellValue(key, value);
   });
 
-  state.field.cells = tempCells;
+  state.field.cells.curCells = state.field.cells.nextCells;
+  state.field.cells.nextCells = {};
   state.generationCount++;
 }
 
@@ -72,11 +83,11 @@ const getNeighbours = function(x, y) {
   NEIGHBOUR_OFFSETS.forEach(function(offset) {
     const { x: maxX, y: maxY } = state.field.axes;
 
-    const neighbourX = calcNewCoord(x + offset.x, maxX);
-    const neighbourY = calcNewCoord(y + offset.y, maxY);
+    const neighbourX = getNewCoord(x + offset.x, maxX);
+    const neighbourY = getNewCoord(y + offset.y, maxY);
 
     const neighbourKey = `${neighbourY}_${neighbourX}`;
-    const neighbourValue = state.field.cells[neighbourKey];
+    const neighbourValue = state.field.cells.curCells[neighbourKey];
 
     neighbours[neighbourKey] = neighbourValue;
   });
@@ -84,24 +95,18 @@ const getNeighbours = function(x, y) {
   return neighbours;
 }
 
-const getAliveNeighbours = function(neighbours) {
-  return Object
-    .values(neighbours)
-    .filter((value) => value).length;
-}
-
-const updateCell = function(key, value) {
+const updateCellValue = function(key, value) {
   const [y, x] = key.split('_');
 
   const neighbours = getNeighbours(+x, +y);
   const aliveNeighbours = getAliveNeighbours(neighbours);
 
-  // Клетка жива и имеет 2 или 3 живых соседа
-  if (value && [2, 3].includes(aliveNeighbours)) return 1;
-  // Клетка мертва и имеет 3 живых соседа
-  if (!value && aliveNeighbours === 3) return 1;
-
-  return 0;
+  return getNewCellValue(value, aliveNeighbours);
 }
 
-export { state, generateField, calcFirstGen, calcNextGen };
+export {
+  state,
+  generateField,
+  calcFirstGen,
+  calcNextGen
+};
