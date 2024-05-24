@@ -8,10 +8,7 @@ const state = {
       x: X_AXIS,
       y: Y_AXIS
     },
-    cells: {
-      currentGen: {},
-      nextGen: {}
-    }
+    cells: {}
   },
   generationCount: 0
 };
@@ -26,7 +23,7 @@ const generateField = function({ x, y }) {
 
   for (let i = 1; i <= +y; i++) {
     for (let j = 1; j <= +x; j++) {
-      state.field.cells.currentGen[`${i}_${j}`] = 0;
+      state.field.cells[`${i}_${j}`] = 0;
     }
   }
 }
@@ -41,7 +38,7 @@ const applyPattern = function(pattern) {
     }
     case 'glider': {
       Object.entries(GLIDER_PATTERN).forEach(function([key, value]) {
-        state.field.cells.currentGen[key] = value;
+        state.field.cells[key] = value;
       });
 
       break;
@@ -59,12 +56,13 @@ const calcFirstGeneration = function(pattern) {
 }
 
 const calcNextGen = function() {
-  Object.entries(state.field.cells.currentGen).forEach(function([key, value]) {
-    state.field.cells.nextGen[key] = updateCell(key, value);
+  const tempCells = {};
+
+  Object.entries(state.field.cells).forEach(function([key, value]) {
+    tempCells[key] = updateCell(key, value);
   });
 
-  state.field.cells.currentGen = state.field.cells.nextGen;
-  state.field.cells.nextGen = {};
+  state.field.cells = tempCells;
   state.generationCount++;
 }
 
@@ -74,7 +72,7 @@ const getAliveNeighbours = function(y, x) {
 
     const neighbourY = calcNewCoord(y + offset.y, maxY);
     const neighbourX = calcNewCoord(x + offset.x, maxX);
-    const neighbour = state.field.cells.currentGen[`${neighbourY}_${neighbourX}`];
+    const neighbour = state.field.cells[`${neighbourY}_${neighbourX}`];
 
     return acc + neighbour;
   }, 0);
