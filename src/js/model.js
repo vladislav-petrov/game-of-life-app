@@ -49,7 +49,7 @@ const applyPattern = function(pattern) {
   }
 }
 
-const calcFirstGeneration = function(pattern) {
+const calcFirstGen = function(pattern) {
   applyPattern(pattern);
 
   state.generationCount++;
@@ -98,4 +98,4 @@ const updateCell = function(key, value) {
   return 0;
 }
 
-export { state, generateField, calcFirstGeneration, calcNextGen };
+export { state, generateField, calcFirstGen, calcNextGen };

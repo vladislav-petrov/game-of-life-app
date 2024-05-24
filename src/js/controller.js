@@ -5,7 +5,7 @@ import fieldView from './views/FieldView.js';
 
 const controlInput = function(data) {
   model.generateField(data);
-  model.calcFirstGeneration('glider');
+  model.calcFirstGen('glider');
   fieldView.render(model.state.field);
 
   setInterval(function() {
