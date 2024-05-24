@@ -84,11 +84,17 @@ const getNeighbours = function(x, y) {
   return neighbours;
 }
 
+const getAliveNeighbours = function(neighbours) {
+  return Object
+    .values(neighbours)
+    .filter((value) => value).length;
+}
+
 const updateCell = function(key, value) {
   const [y, x] = key.split('_');
 
   const neighbours = getNeighbours(+x, +y);
-  const aliveNeighbours = Object.values(neighbours).filter((el) => el).length;
+  const aliveNeighbours = getAliveNeighbours(neighbours);
 
   // Клетка жива и имеет 2 или 3 живых соседа
   if (value && [2, 3].includes(aliveNeighbours)) return 1;
