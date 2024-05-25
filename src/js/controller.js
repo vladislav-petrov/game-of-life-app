@@ -1,26 +1,28 @@
 import * as model from './model.js';
 
-import inputView from './views/InputView.js';
-import fieldView from './views/FieldView.js';
+import canvasView from './views/CanvasView.js';
+import Field from './field/Field.js';
 
-const controlInput = function(data) {
-  const { x, y } = data;
-
-  model.setFieldDimensions(+x, +y);
-
-  model.setFirstGenAliveCells('setPattern', 'glider');
-  fieldView.render(model.state.field);
-
-  setInterval(function() {
-    model.setNextGenAliveCells();
-    fieldView.render(model.state.field);
-  }, 500);
-}
+const controlInput = function(data) {}
 
 const init = function() {
-  inputView.subscribeHandlerStart(controlInput);
+  // inputView.subscribeHandlerStart(controlInput);
 
-  inputView.render(model.state.field.dimensions);
+  canvasView.render();
+
+  const field = new Field(20, 20);
+
+  field.drawField();
+
+  model.setFieldDimensions(20);
+  model.setFirstGenAliveCells('setPattern', 'glider');
+  field.drawCells(model.state.field.aliveCells);
+
+  // setInterval(function() {
+  //   model.setNextGenAliveCells();
+  //   field.drawCells(model.state.field.aliveCells);
+  // }, 500);
+
 }
 
 init();
