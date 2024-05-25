@@ -21,6 +21,5 @@ const checkIsAlive = (cell, aliveCells) => aliveCells.includes(cell);
 export {
   getCellCoords,
   getNewCellCoord,
-  checkIsAlive,
-  getNewCellValue
+  checkIsAlive
 };
