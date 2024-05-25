@@ -27,7 +27,7 @@ const setFieldDimensions = function(x, y) {
 }
 
 const applyPattern = function(pattern) {
-  state.field.aliveCells = PATTERNS[pattern];
+  state.field.aliveCells = [ ...PATTERNS[pattern] ];
 }
 
 const setFirstGenAliveCells = function(action, pattern = null) {
@@ -53,7 +53,7 @@ const getNeighbors = function(x, y) {
 
 const countAliveNeighbors = function(neighbors) {
   return neighbors.reduce(function(acc, neighbor) {
-    return acc + checkIsAlive(neighbor, state.field.aliveCells) ? 1 : 0;
+    return acc + (checkIsAlive(neighbor, state.field.aliveCells) ? 1 : 0);
   }, 0);
 }
 
@@ -69,7 +69,7 @@ const setNextGenAliveCells = function() {
     // 1) Если клетка выжила (2 или 3 живых соседа),
     // добавляем ее в массив
     if (aliveNeighbours === 2 || aliveNeighbours === 3) {
-      nextGenAliveCells.push(nextGenAliveCells);
+      nextGenAliveCells.push(cell);
     }
 
     // 2) Проверяем соседей клетки. Если у соседа есть
@@ -79,6 +79,9 @@ const setNextGenAliveCells = function() {
       // Если уже проверили этого соседа при обработке
       // другой клетки, не проверяем его еще раз
       if (checkedNeighbors.includes(neighbor)) return;
+      // Если этот сосед живой, то проверка не нужна,
+      // т.к. он будет проверен в цикле по живым клеткам
+      if (checkIsAlive(neighbor, state.field.aliveCells)) return;
 
       const [x, y] = getCellCoords(neighbor);
       const aliveNeighbours = countAliveNeighbors(getNeighbors(x, y));
@@ -91,7 +94,7 @@ const setNextGenAliveCells = function() {
     });
   });
 
-  state.field.aliveCells = nextGenAliveCells;
+  state.field.aliveCells = [ ...nextGenAliveCells ];
 }
 
 export {

@@ -4,12 +4,15 @@ import inputView from './views/InputView.js';
 import fieldView from './views/FieldView.js';
 
 const controlInput = function(data) {
-  model.generateField(data);
-  model.calcFirstGen('glider');
+  const { x, y } = data;
+
+  model.setFieldDimensions(+x, +y);
+
+  model.setFirstGenAliveCells('setPattern', 'glider');
   fieldView.render(model.state.field);
 
   setInterval(function() {
-    model.calcNextGen();
+    model.setNextGenAliveCells();
     fieldView.render(model.state.field);
   }, 500);
 }
@@ -17,7 +20,7 @@ const controlInput = function(data) {
 const init = function() {
   inputView.subscribeHandlerStart(controlInput);
 
-  inputView.render(model.state.field.axes);
+  inputView.render(model.state.field.dimensions);
 }
 
 init();

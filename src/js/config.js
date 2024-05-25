@@ -15,8 +15,8 @@ const NEIGHBOR_OFFSETS = [
 
 // Patterns
 const PATTERNS = {
-  blinker: ['1_0', '1_1', '1_2'],
-  glider: ['0_2', '1_0', '1_2', '2_1', '2_2']
+  blinker: ['2_1', '2_2', '2_3'],
+  glider: ['1_3', '2_1', '2_3', '3_2', '3_3']
 };
 
 export {

@@ -4,8 +4,8 @@ class FieldView extends View {
   _parentElement = document.querySelector('.field');
 
   _generateMarkup() {
-    const { x, y } = this._data.axes;
-    const { curCells } = this._data.cells;
+    const { x, y } = this._data.dimensions;
+    const { aliveCells } = this._data;
 
     return (
       `
@@ -15,11 +15,11 @@ class FieldView extends View {
               `
                 <tr>
                   ${Array.from({ length: x }).map(function(_, j) {
-                    const key = `${i + 1}_${j + 1}`;
+                    const cell = `${i + 1}_${j + 1}`;
 
                     return (
                       `
-                        <td id="${key}">${curCells[key]}</td>
+                        <td>${aliveCells.includes(cell) ? 1 : 0}</td>
                       `
                     );
                   }).join('')}
