@@ -1,112 +1,102 @@
 import {
   X_AXIS,
   Y_AXIS,
-  GLIDER_PATTERN,
-  NEIGHBOUR_OFFSETS
+  NEIGHBOR_OFFSETS,
+  PATTERNS
 } from './config.js';
 
 import {
-  getNewCoord,
-  getAliveNeighbours,
-  getNewCellValue
+  getCellCoords,
+  getNewCellCoord,
+  checkIsAlive
 } from './helpers.js';
 
 const state = {
   field: {
-    axes: {
+    dimensions: {
       x: X_AXIS,
       y: Y_AXIS
     },
-    cells: {
-      curCells: {},
-      nextCells: {}
-    }
-  },
-  generationCount: 0
+    aliveCells: []
+  }
 };
 
-const updateFieldSize = function(x, y) {
-  state.field.axes.x = x;
-  state.field.axes.y = y;
-}
-
-const generateField = function({ x, y }) {
-  updateFieldSize(+x, +y);
-
-  for (let i = 1; i <= +y; i++) {
-    for (let j = 1; j <= +x; j++) {
-      state.field.cells.curCells[`${i}_${j}`] = 0;
-    }
-  }
+const setFieldDimensions = function(x, y) {
+  state.field.dimensions.x = x;
+  state.field.dimensions.y = y;
 }
 
 const applyPattern = function(pattern) {
-  switch (pattern) {
-    case 'block': {
-      break;
-    }
-    case 'blinker': {
-      break;
-    }
-    case 'glider': {
-      Object.entries(GLIDER_PATTERN).forEach(function([key, value]) {
-        state.field.cells.curCells[key] = value;
-      });
+  state.field.aliveCells = PATTERNS[pattern];
+}
 
-      break;
-    }
-    default: {
-      
-    }
+const setFirstGenAliveCells = function(action, pattern = null) {
+  if (action === 'setPattern') {
+    applyPattern(pattern);
   }
+
+  if (action === 'setRandom') {}
+
+  if (action === 'setManual') {}
 }
 
-const calcFirstGen = function(pattern) {
-  applyPattern(pattern);
+const getNeighbors = function(x, y) {
+  return NEIGHBOR_OFFSETS.map(function(offset) {
+    const { x: maxX, y: maxY } = state.field.dimensions;
 
-  state.generationCount++;
+    const neighborX = getNewCellCoord(x + offset.x, maxX);
+    const neighborY = getNewCellCoord(y + offset.y, maxY);
+
+    return `${neighborY}_${neighborX}`;
+  });
 }
 
-const calcNextGen = function() {
-  Object.entries(state.field.cells.curCells).forEach(function([key, value]) {
-    state.field.cells.nextCells[key] = updateCellValue(key, value);
+const countAliveNeighbors = function(neighbors) {
+  return neighbors.reduce(function(acc, neighbor) {
+    return acc + checkIsAlive(neighbor, state.field.aliveCells) ? 1 : 0;
+  }, 0);
+}
+
+const setNextGenAliveCells = function() {
+  const nextGenAliveCells = [];
+  const checkedNeighbors = [];
+
+  state.field.aliveCells.forEach(function(cell) {
+    const [x, y] = getCellCoords(cell);
+    const neighbors = getNeighbors(x, y);
+    const aliveNeighbours = countAliveNeighbors(neighbors);
+
+    // 1) Если клетка выжила (2 или 3 живых соседа),
+    // добавляем ее в массив
+    if (aliveNeighbours === 2 || aliveNeighbours === 3) {
+      nextGenAliveCells.push(nextGenAliveCells);
+    }
+
+    // 2) Проверяем соседей клетки. Если у соседа есть
+    // ровно 3 живых соседа (рождение клетки) - также
+    // добавляем проверяемого соседа в массив
+    neighbors.forEach(function(neighbor) {
+      // Если уже проверили этого соседа при обработке
+      // другой клетки, не проверяем его еще раз
+      if (checkedNeighbors.includes(neighbor)) return;
+
+      const [x, y] = getCellCoords(neighbor);
+      const aliveNeighbours = countAliveNeighbors(getNeighbors(x, y));
+
+      if (aliveNeighbours === 3) {
+        nextGenAliveCells.push(neighbor);
+      }
+
+      checkedNeighbors.push(neighbor);
+    });
   });
 
-  state.field.cells.curCells = state.field.cells.nextCells;
-  state.field.cells.nextCells = {};
-  state.generationCount++;
-}
-
-const getNeighbours = function(x, y) {
-  const neighbours = {};
-
-  NEIGHBOUR_OFFSETS.forEach(function(offset) {
-    const { x: maxX, y: maxY } = state.field.axes;
-
-    const neighbourX = getNewCoord(x + offset.x, maxX);
-    const neighbourY = getNewCoord(y + offset.y, maxY);
-
-    const neighbourKey = `${neighbourY}_${neighbourX}`;
-    const neighbourValue = state.field.cells.curCells[neighbourKey];
-
-    neighbours[neighbourKey] = neighbourValue;
-  });
-
-  return neighbours;
-}
-
-const updateCellValue = function(key, value) {
-  const [y, x] = key.split('_');
-
-  const neighbours = getNeighbours(+x, +y);
-  const aliveNeighbours = getAliveNeighbours(neighbours);
-
-  return getNewCellValue(value, aliveNeighbours);
+  state.field.aliveCells = nextGenAliveCells;
 }
 
 export {
   state,
-  generateField,
-  calcFirstGen,
-  calcNextGen
+  setFieldDimensions,
+  setFirstGenAliveCells,
+  setNextGenAliveCells
 };

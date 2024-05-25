@@ -1,8 +1,8 @@
 const X_AXIS = 10;
 const Y_AXIS = 10;
-const MIN_DIM = 6;
+const MIN_DIMENSION = 6;
 
-const NEIGHBOUR_OFFSETS = [
+const NEIGHBOR_OFFSETS = [
   { x: -1, y: -1 }, 
   { x: 0, y: -1 }, 
   { x: 1, y: -1 }, 
@@ -14,22 +14,15 @@ const NEIGHBOUR_OFFSETS = [
 ];
 
 // Patterns
-const GLIDER_PATTERN = {
-  '1_1': 0,
-  '1_2': 0,
-  '1_3': 1,
-  '2_1': 1,
-  '2_2': 0,
-  '2_3': 1,
-  '3_1': 0,
-  '3_2': 1,
-  '3_3': 1
+const PATTERNS = {
+  blinker: ['1_0', '1_1', '1_2'],
+  glider: ['0_2', '1_0', '1_2', '2_1', '2_2']
 };
 
 export {
   X_AXIS,
   Y_AXIS,
-  MIN_DIM,
-  GLIDER_PATTERN,
-  NEIGHBOUR_OFFSETS
+  MIN_DIMENSION,
+  PATTERNS,
+  NEIGHBOR_OFFSETS
 };

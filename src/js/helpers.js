@@ -1,4 +1,10 @@
-const getNewCoord = function(coord, maxCoord) {
+const getCellCoords = function(cell) {
+  const [y, x] = cell.split('_');
+
+  return [+x, +y];
+}
+
+const getNewCellCoord = function(coord, maxCoord) {
   if (coord < 1) {
     return maxCoord;
   }
@@ -10,23 +16,11 @@ const getNewCoord = function(coord, maxCoord) {
   return coord;
 }
 
-const getAliveNeighbours = function(neighbours) {
-  return Object
-    .values(neighbours)
-    .filter((value) => value).length;
-}
-
-const getNewCellValue = function(value, aliveNeighbours) {
-  // Клетка жива и имеет 2 или 3 живых соседа
-  if (value && [2, 3].includes(aliveNeighbours)) return 1;
-  // Клетка мертва и имеет 3 живых соседа
-  if (!value && aliveNeighbours === 3) return 1;
-
-  return 0;
-}
+const checkIsAlive = (cell, aliveCells) => aliveCells.includes(cell);
 
 export {
-  getNewCoord,
-  getAliveNeighbours,
+  getCellCoords,
+  getNewCellCoord,
+  checkIsAlive,
   getNewCellValue
 };
