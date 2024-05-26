@@ -12,6 +12,7 @@ import {
 } from './helpers.js';
 
 const state = {
+  status: 'idle',
   field: {
     dimensions: {
       x: X_AXIS,
@@ -24,20 +25,6 @@ const state = {
 const setFieldDimensions = function(x, y) {
   state.field.dimensions.x = x;
   state.field.dimensions.y = y;
-}
-
-const applyPattern = function(pattern) {
-  state.field.aliveCells = [ ...PATTERNS[pattern] ];
-}
-
-const setFirstGenAliveCells = function(action, pattern = null) {
-  if (action === 'setPattern') {
-    applyPattern(pattern);
-  }
-
-  if (action === 'setRandom') {}
-
-  if (action === 'setManual') {}
 }
 
 const getNeighbors = function(x, y) {
@@ -55,6 +42,24 @@ const countAliveNeighbors = function(neighbors) {
   return neighbors.reduce(function(acc, neighbor) {
     return acc + (checkIsAlive(neighbor, state.field.aliveCells) ? 1 : 0);
   }, 0);
+}
+
+const applyPattern = function(pattern) {
+  state.field.aliveCells = [ ...PATTERNS[pattern] ];
+}
+
+const checkIsGameOver = function() {
+  
+}
+
+const setFirstGenAliveCells = function(action, pattern = null) {
+  if (action === 'setPattern') {
+    applyPattern(pattern);
+  }
+
+  if (action === 'setRandom') {}
+
+  if (action === 'setManual') {}
 }
 
 const setNextGenAliveCells = function() {
