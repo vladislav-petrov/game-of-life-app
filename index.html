@@ -4,16 +4,126 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="module" src="src/js/controller.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="./src/css/normalize.css" />
     <link rel="stylesheet" href="./src/css/style.css" />
+
+    <script type="module" src="src/js/controller.js"></script>
 
     <title>Game of Life</title>
   </head>
 
   <body>
-    <div class="input"></div>
-    <div class="field"></div>
+    <header class="header">
+      <div class="wrapper">
+        <div class="wrapper-block wrapper-heading">
+          <h1 class="header__heading">
+            Игра "Жизнь"
+          </h1>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      <div class="wrapper">
+        <section class="section-rules">
+          <button class="rules__btn btn">
+            <img
+              class="rules__btn-arrow-right"
+              src="./public/arrow-right.svg"
+              alt="Right arrow"
+            />
+
+            <img
+              class="rules__btn-arrow-down hidden"
+              src="./public/arrow-down.svg"
+              alt="Down arrow"
+            />
+
+            <span class="rules__btn-text">Правила</span>
+          </button>
+
+          <div class="wrapper-block wrapper-rule">
+            <div class="rules__rule">
+              <h3 class="rule__heading">Правило 1.</h3>
+
+              <p class="rule__text">
+                Действие происходит на бесконечной плоскости, разделенной на клетки,
+                которую можно иногда представить как зацикленную конечную
+              </p>
+            </div>
+
+            <div class="rules__rule">
+              <h3 class="rule__heading">Правило 2.</h3>
+
+              <p class="rule__text">
+                Каждая клетка может находиться в двух состояниях:
+                быть живой или быть мёртвой
+              </p>
+            </div>
+
+            <div class="rules__rule">
+              <h3 class="rule__heading">Правило 3.</h3>
+
+              <p class="rule__text">
+                У каждой клетки 8 соседей
+              </p>
+            </div>
+
+            <div class="rules__rule">
+              <h3 class="rule__heading">Правило 4.</h3>
+
+              <p class="rule__text">
+                Если клетка жива и у нее 2-3 живых соседа, то она остается живой,
+                иначе умирает
+              </p>
+            </div>
+
+            <div class="rules__rule">
+              <h3 class="rule__heading">Правило 5.</h3>
+
+              <p class="rule__text">
+                Если клетка мертва и у нее 3 живых соседа, то она становится живой,
+                иначе остается мертвой
+              </p>
+            </div>
+
+            <div class="rules__rule">
+              <h3 class="rule__heading">Правило 6.</h3>
+
+              <p class="rule__text">
+                Игра прекращается, если на поле не останется ни одной живой клетки
+              </p>
+            </div>
+
+            <div class="rules__rule">
+              <h3 class="rule__heading">Правило 7.</h3>
+
+              <p class="rule__text">
+                Игра прекращается, если при очередном шаге ни одна из клеток
+                не меняет своего состояния
+              </p>
+            </div>
+
+            <div class="rules__rule">
+              <h3 class="rule__heading">Правило 8.</h3>
+
+              <p class="rule__text">
+                Игра прекращается, если конфигурация на очередном шаге в точности
+                повторит себя же на одном из более ранних шагов
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-game">
+
+        </section>
+      </div>
+    </main>
   </body>
 </html>

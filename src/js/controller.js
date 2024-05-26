@@ -3,8 +3,8 @@ import * as model from './model.js';
 import canvasView from './views/CanvasView.js';
 import Field from './field/Field.js';
 
-canvasView.render();
-const field = new Field(20);
+// canvasView.render();
+// const field = new Field(20);
 
 const controlInput = function(data) {}
 
@@ -30,4 +30,4 @@ const init = function() {
   // }, 500);
 }
 
-init();
+// init();
