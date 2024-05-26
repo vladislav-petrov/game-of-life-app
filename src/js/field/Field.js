@@ -4,19 +4,17 @@ class Field {
   #canvas;
   #context;
   #rect;
-  #cellWidth;
-  #cellHeight;
+  #cellSize;
 
   #gridColor = '#686a6c';
   #cellsColor = '#000000';
 
-  constructor(cellWidth, cellHeight) {
+  constructor(cellSize) {
     this.#canvas = document.getElementById('field');
     this.#context = this.#canvas.getContext('2d');
     this.#rect = this.#canvas.getBoundingClientRect();
 
-    this.#cellWidth = cellWidth;
-    this.#cellHeight = cellHeight;
+    this.#cellSize = cellSize;
 
     this.#context.strokeStyle = this.#gridColor;
     this.#context.fillStyle = this.#cellsColor;
@@ -37,14 +35,14 @@ class Field {
   }
 
   drawField() {
-		for (let i = 0; i <= this.#canvas.width; i += this.#cellWidth) {
+		for (let i = 0; i <= this.#canvas.width; i += this.#cellSize) {
 			this.#context.beginPath();
 			this.#context.moveTo(i, 0);
 			this.#context.lineTo(i, this.#canvas.height);
 			this.#context.stroke();
 		}
 
-		for (let j = 0; j <= this.#canvas.height; j += this.#cellHeight) {
+		for (let j = 0; j <= this.#canvas.height; j += this.#cellSize) {
 			this.#context.beginPath();
 			this.#context.moveTo(0, j);
 			this.#context.lineTo(this.#canvas.width, j);
@@ -56,10 +54,10 @@ class Field {
     const [x, y] = getCellCoords(cell);
 
     this.#context.fillRect(
-      (x - 1) * this.#cellWidth,
-      (y - 1) * this.#cellHeight,
-      this.#cellWidth,
-      this.#cellHeight
+      (x - 1) * this.#cellSize,
+      (y - 1) * this.#cellSize,
+      this.#cellSize,
+      this.#cellSize
     );
   }
 
@@ -67,12 +65,18 @@ class Field {
     cells.forEach((cell) => this.drawCell(cell));
   }
 
+  reset() {
+    this.#context.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
+
+		this.drawField();
+  }
+
   subscribeHandlerManualDraw(handler) {
     const eventListenerFunction = (event) => {
       const offsetX = event.clientX - this.#rect.left;
       const offsetY = event.clientY - this.#rect.top;
-      const x = Math.trunc(offsetX / this.#cellWidth) + 1;
-      const y = Math.trunc(offsetY / this.#cellHeight) + 1;
+      const x = Math.trunc(offsetX / this.#cellSize) + 1;
+      const y = Math.trunc(offsetY / this.#cellSize) + 1;
     
       handler(`${y}_${x}`);
     }
