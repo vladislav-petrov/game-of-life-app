@@ -15,27 +15,6 @@ const handleChangeConfiguration = function(action, pattern = null) {
   model.setFirstGenAliveCells(action, pattern);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-const controlInput = function(data) {}
-
-const handleCellClick = function(cell) {
-  field.drawCell(cell);
-}
-
 const init = function() {
   tabsView.render();
   dimensionView.render(model.state.field.dimension);

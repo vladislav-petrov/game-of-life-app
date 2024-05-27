@@ -310,14 +310,20 @@ button {
 
         gap: 18px;
 
-        .sidebar__reset,
-        .sidebar__start {
+        .sidebar__reset {
           background-color: var(--btn-bg-primary-color);
         }
 
-        .sidebar__reset:hover,
-        .sidebar__start:hover {
+        .sidebar__start {
           background-color: var(--btn-bg-secondary-color);
+        }
+
+        .sidebar__reset:hover {
+          background-color: var(--btn-bg-secondary-color);
+        }
+
+        .sidebar__start:hover {
+          background-color: var(--btn-bg-primary-color);
         }
       }
     }
