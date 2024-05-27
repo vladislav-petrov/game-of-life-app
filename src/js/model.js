@@ -40,7 +40,7 @@ const countAliveNeighbors = function(neighbors) {
 }
 
 const applyPattern = function(pattern) {
-  state.field.aliveCells = [ ...PATTERNS[pattern] ];
+  state.field.aliveCells = [ ...PATTERNS[pattern].coords ];
 }
 
 const checkIsGameOver = function() {

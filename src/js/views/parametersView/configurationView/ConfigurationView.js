@@ -14,7 +14,7 @@ class ConfigurationView extends View {
           </h2>
 
           <div class="configuration__configs">
-            
+            ${Object.entries(PATTERNS).map()}
           </div>
         </div>
       `
