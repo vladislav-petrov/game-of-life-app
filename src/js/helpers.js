@@ -18,8 +18,11 @@ const getNewCellCoord = function(coord, maxCoord) {
 
 const checkIsAlive = (cell, aliveCells) => aliveCells.includes(cell);
 
+const getCellSize = (fieldSize, dimension) => fieldSize / dimension;
+
 export {
   getCellCoords,
   getNewCellCoord,
-  checkIsAlive
+  checkIsAlive,
+  getCellSize
 };

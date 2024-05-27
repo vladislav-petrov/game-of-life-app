@@ -1,4 +1,6 @@
-import { getCellCoords } from '../helpers.js';
+import { FIELD_SIZE } from '../config.js';
+
+import { getCellCoords, getCellSize } from '../helpers.js';
 
 class Field {
   #canvas;
@@ -9,12 +11,10 @@ class Field {
   #gridColor = '#686a6c';
   #cellsColor = '#000000';
 
-  constructor(cellSize) {
+  constructor() {
     this.#canvas = document.getElementById('field');
     this.#context = this.#canvas.getContext('2d');
     this.#rect = this.#canvas.getBoundingClientRect();
-
-    this.#cellSize = cellSize;
 
     this.#context.strokeStyle = this.#gridColor;
     this.#context.fillStyle = this.#cellsColor;
@@ -34,7 +34,13 @@ class Field {
     this.#context.scale(dpr, dpr);
   }
 
-  drawField() {
+  reset() {
+    this.#context.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
+  }
+
+  drawField(dimension) {
+    this.#cellSize = getCellSize(FIELD_SIZE, dimension);
+
 		for (let i = 0; i <= this.#canvas.width; i += this.#cellSize) {
 			this.#context.beginPath();
 			this.#context.moveTo(i, 0);

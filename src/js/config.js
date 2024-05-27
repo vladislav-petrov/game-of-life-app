@@ -1,5 +1,6 @@
 const MIN_DIMENSION = 6;
 const DIMENSION = 10;
+const FIELD_SIZE = 800;
 
 const NEIGHBOR_OFFSETS = [
   { x: -1, y: -1 }, 
@@ -12,7 +13,6 @@ const NEIGHBOR_OFFSETS = [
   { x: 1, y: 1 }
 ];
 
-// Patterns
 const PATTERNS = {
   blinker: {
     name: 'Мигалка',
@@ -39,6 +39,7 @@ const PATTERNS = {
 export {
   MIN_DIMENSION,
   DIMENSION,
+  FIELD_SIZE,
   PATTERNS,
   NEIGHBOR_OFFSETS
 };

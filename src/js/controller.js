@@ -4,11 +4,17 @@ import tabsView from './views/tabsView/TabsView.js';
 import dimensionView from './views/parametersView/dimensionView/dimensionView.js';
 import configurationView from './views/parametersView/configurationView/ConfigurationView.js';
 import sidebarView from './views/gameView/sidebarView/SidebarView.js';
+import fieldView from './views/gameView/fieldView/FieldView.js';
 
 import Field from './field/Field.js';
 
+const field = new Field();
+
 const handleChangeDimension = function(dimension) {
   model.setFieldDimension(dimension);
+
+  field.reset();
+  field.drawField(model.state.field.dimension);
 }
 
 const handleChangeConfiguration = function(action, pattern = null) {
@@ -20,10 +26,9 @@ const init = function() {
   dimensionView.render(model.state.field.dimension);
   configurationView.render();
   sidebarView.render(model.state.characteristics);
+  fieldView.render();
 
-  const field = new Field(10);
-
-  field.drawField();
+  field.drawField(model.state.field.dimension);
   field.drawCells(model.state.field.aliveCells);
 
   dimensionView.subscribeHandlerChangeDimension(handleChangeDimension);
