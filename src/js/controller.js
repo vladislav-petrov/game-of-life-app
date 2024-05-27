@@ -4,6 +4,19 @@ import tabsView from './views/tabsView/TabsView.js';
 import dimensionView from './views/parametersView/dimensionView/dimensionView.js';
 import configurationView from './views/parametersView/configurationView/ConfigurationView.js';
 
+const handleChangeDimension = function(dimension) {
+  model.setFieldDimension(dimension);
+}
+
+const handleChangeConfiguration = function(action, pattern = null) {
+  model.setFirstGenAliveCells(action, pattern);
+}
+
+
+
+
+
+
 
 
 
@@ -25,6 +38,13 @@ const init = function() {
   tabsView.render();
   dimensionView.render(model.state.field.dimension);
   configurationView.render();
+
+  dimensionView.subscribeHandlerChangeDimension(handleChangeDimension);
+  configurationView.subscribeHandlerChangeConfiguration(handleChangeConfiguration);
+
+
+
+
 
 
 

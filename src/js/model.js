@@ -18,7 +18,7 @@ const state = {
   }
 };
 
-const setFieldDimensions = function(dimension) {
+const setFieldDimension = function(dimension) {
   state.field.dimension = dimension;
 }
 
@@ -47,14 +47,18 @@ const checkIsGameOver = function() {
   
 }
 
-const setFirstGenAliveCells = function(action, pattern = null) {
+const setFirstGenAliveCells = function(action, pattern) {
   if (action === 'setPattern') {
     applyPattern(pattern);
   }
 
-  if (action === 'setRandom') {}
+  if (action === 'setRandom') {
+    //todo
+  }
 
-  if (action === 'setManual') {}
+  if (action === 'setManual') {
+    //todo
+  }
 }
 
 const setNextGenAliveCells = function() {
@@ -99,7 +103,7 @@ const setNextGenAliveCells = function() {
 
 export {
   state,
-  setFieldDimensions,
+  setFieldDimension,
   setFirstGenAliveCells,
   setNextGenAliveCells
 };

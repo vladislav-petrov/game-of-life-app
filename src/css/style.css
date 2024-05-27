@@ -175,7 +175,7 @@ button {
 
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        gap: 16px;
 
         .dimension__input {
           width: 100%;
@@ -183,10 +183,16 @@ button {
           padding: 12px;
           color: var(--font-secondary-color);
           border-radius: 4px;
+        }
+
+        .dimension__input:focus {
+          outline: none;
           box-shadow: var(--box-shadow);
         }
 
         .dimension__btn {
+          align-self: center;
+
           margin-top: 12px;
           background-color: var(--btn-bg-tertiary-color);
         }
@@ -199,6 +205,65 @@ button {
 
     .parameters__configuration {
       flex-grow: 1;
+
+      .wrapper-configuration {
+        display: flex;
+
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+
+        .configuration__configs {
+          width: 100%;
+
+          display: flex;
+
+          justify-content: space-between;
+
+          .config {
+            cursor: pointer;
+
+            display: flex;
+
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+
+            .config__img {
+              width: 160px;
+              height: 160px;
+              border-radius: 8px;
+
+              transition: all 0.2s;
+            }
+
+            .config__name {
+              transition: all 0.2s;
+            }
+          }
+
+          .config:hover {
+            .config__img {
+              box-shadow: var(--box-shadow);
+            }
+
+            .config__name {
+              font-weight: 500;
+            }
+          }
+        }
+
+        .configuration__random {
+          align-self: center;
+
+          margin-top: 12px;
+          background-color: var(--btn-bg-tertiary-color);
+        }
+
+        .configuration__random:hover {
+          background-color: var(--btn-bg-additional-color);
+        }
+      }
     }
   }
 

@@ -31,6 +31,22 @@ class DimensionView extends View {
       `
     );
   }
+
+  subscribeHandlerChangeDimension(handler) {
+    this._parentElement.addEventListener('submit', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (!event.target.classList.contains('dimension-form')) return;
+
+      const data = Object.fromEntries(new FormData(event.target));
+      const dimension = +data.dimension;
+
+      if (dimension === this._data) return;
+
+      handler(dimension);
+    });
+  }
 }
 
 export default new DimensionView();
