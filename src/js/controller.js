@@ -8,7 +8,7 @@ import fieldView from './views/gameView/fieldView/FieldView.js';
 
 import Field from './field/Field.js';
 
-const field = new Field();
+let field;
 
 const handleChangeDimension = function(dimension) {
   model.setFieldDimension(dimension);
@@ -27,6 +27,8 @@ const init = function() {
   configurationView.render();
   sidebarView.render(model.state.characteristics);
   fieldView.render();
+
+  field = new Field();
 
   field.drawField(model.state.field.dimension);
   field.drawCells(model.state.field.aliveCells);
