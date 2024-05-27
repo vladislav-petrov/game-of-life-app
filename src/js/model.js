@@ -43,6 +43,26 @@ const applyPattern = function(pattern) {
   state.field.aliveCells = [ ...PATTERNS[pattern].coords ];
 }
 
+const applyRandom = function() {
+  let skipCells = 1;
+
+  if (state.field.dimension >= 500) {
+    skipCells = 2;
+  }
+
+  if (state.field.dimension >= 1000) {
+    skipCells = 4;
+  }
+
+  for (let i = 1; i <= state.field.dimension; i += skipCells) {
+    for (let j = 1; j <= state.field.dimension; j += skipCells) {
+      if (Math.random() < 0.5) continue;
+
+      state.field.aliveCells.push(`${i}_${j}`);
+    }
+  }
+}
+
 const checkIsGameOver = function() {
   
 }
@@ -53,7 +73,7 @@ const setFirstGenAliveCells = function(action, pattern) {
   }
 
   if (action === 'setRandom') {
-    //todo
+    applyRandom();
   }
 
   if (action === 'setManual') {
