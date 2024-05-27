@@ -177,10 +177,6 @@ button {
         align-items: flex-start;
         gap: 12px;
 
-        .dimension__label {
-
-        }
-
         .dimension__input {
           width: 100%;
           border: none;
@@ -199,6 +195,10 @@ button {
           background-color: var(--btn-bg-additional-color);
         }
       }
+    }
+
+    .parameters__configuration {
+      flex-grow: 1;
     }
   }
 

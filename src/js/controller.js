@@ -1,7 +1,8 @@
 import * as model from './model.js';
 
 import tabsView from './views/tabsView/TabsView.js';
-import dimensionView from './views/dimensionView/dimensionView.js';
+import dimensionView from './views/parametersView/dimensionView/dimensionView.js';
+import configurationView from './views/parametersView/configurationView/ConfigurationView.js';
 
 
 
@@ -23,6 +24,7 @@ const handleCellClick = function(cell) {
 const init = function() {
   tabsView.render();
   dimensionView.render(model.state.field.dimension);
+  configurationView.render();
 
 
 
@@ -32,7 +34,7 @@ const init = function() {
 
   // field.drawField();
 
-  // model.setFirstGenAliveCells('setPattern', 'glider');
+  // model.setFirstGenAliveCells('setPattern', 'boat');
   // field.drawCells(model.state.field.aliveCells);
 
   // setInterval(function() {

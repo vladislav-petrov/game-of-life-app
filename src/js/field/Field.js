@@ -54,8 +54,8 @@ class Field {
     const [x, y] = getCellCoords(cell);
 
     this.#context.fillRect(
-      (x - 1) * this.#cellSize,
-      (y - 1) * this.#cellSize,
+      (x) * this.#cellSize,
+      (y) * this.#cellSize,
       this.#cellSize,
       this.#cellSize
     );

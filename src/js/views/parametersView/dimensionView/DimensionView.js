@@ -1,6 +1,6 @@
-import { MIN_DIMENSION } from '../../config.js';
+import { MIN_DIMENSION } from '../../../config.js';
 
-import View from '../View.js';
+import View from '../../View.js';
 
 class DimensionView extends View {
   _parentElement = document.querySelector('.parameters__dimension');
