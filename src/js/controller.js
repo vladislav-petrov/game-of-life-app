@@ -15,6 +15,8 @@ const handleChangeDimension = function(dimension) {
 
   field.reset();
   field.drawField(model.state.field.dimension);
+
+  dimensionView.render(model.state.field.dimension);
 }
 
 const handleChangeConfiguration = function(action, pattern = null) {

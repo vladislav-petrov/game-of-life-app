@@ -39,7 +39,7 @@ class Field {
   }
 
   drawField(dimension) {
-    this.#cellSize = getCellSize(FIELD_SIZE, dimension);
+    this.#cellSize = Math.trunc(getCellSize(FIELD_SIZE, dimension));
 
 		for (let i = 0; i <= this.#canvas.width; i += this.#cellSize) {
 			this.#context.beginPath();
