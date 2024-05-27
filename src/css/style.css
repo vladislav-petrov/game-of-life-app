@@ -61,8 +61,16 @@ button {
   background-color: var(--bg-secondary-color);
 }
 
+.btn {
+  padding: 12px 24px;
+  border-radius: 4px;
+  box-shadow: var(--box-shadow);
+
+  transition: all 0.2s;
+}
+
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* HEADER */
@@ -94,12 +102,7 @@ button {
     gap: 18px;
 
     .tab {
-      padding: 12px 24px;
-      border-radius: 4px;
-      box-shadow: var(--box-shadow);
       background-color: var(--btn-bg-primary-color);
-    
-      transition: all 0.2s;
 
       display: flex;
 
@@ -158,10 +161,19 @@ button {
   .section-parameters {
     margin-top: 18px;
 
-    .wrapper-parameters {
-      display: flex;
+    display: flex;
 
-      gap: 24px;
+    gap: 18px;
+
+    .parameters__dimension {
+      width: 20%;
+
+      .dimension-form {
+        display: flex;
+
+        flex-direction: column;
+        gap: 12px;
+      }
     }
   }
 

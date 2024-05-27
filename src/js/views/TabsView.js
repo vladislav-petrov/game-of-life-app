@@ -13,7 +13,7 @@ class TabsView extends View {
   _generateMarkup() {
     return (
       `
-        <button class="tab-rules tab">
+        <button class="tab-rules tab btn">
           <img
             class="tab__icon icon-arrow-right"
             src="./public/arrow-right.svg"
@@ -29,7 +29,7 @@ class TabsView extends View {
           <span class="tab__text">Правила</span>
         </button>
 
-        <button class="tab-parameters tab">
+        <button class="tab-parameters tab btn">
           <img
             class="tab__icon icon-arrow-right"
             src="./public/arrow-right.svg"
