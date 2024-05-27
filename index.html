@@ -30,24 +30,10 @@
 
     <main class="main">
       <div class="wrapper">
-        <section class="section-rules">
-          <button class="rules__btn btn">
-            <img
-              class="rules__btn-arrow-right"
-              src="./public/arrow-right.svg"
-              alt="Right arrow"
-            />
+        <section class="section-tabs"></section>
 
-            <img
-              class="rules__btn-arrow-down hidden"
-              src="./public/arrow-down.svg"
-              alt="Down arrow"
-            />
-
-            <span class="rules__btn-text">Правила</span>
-          </button>
-
-          <div class="wrapper-block wrapper-rule">
+        <section class="section-rules hidden">
+          <div class="wrapper-block wrapper-rules">
             <div class="rules__rule">
               <h3 class="rule__heading">Правило 1.</h3>
 
@@ -108,21 +94,12 @@
                 не меняет своего состояния
               </p>
             </div>
-
-            <div class="rules__rule">
-              <h3 class="rule__heading">Правило 8.</h3>
-
-              <p class="rule__text">
-                Игра прекращается, если конфигурация на очередном шаге в точности
-                повторит себя же на одном из более ранних шагов
-              </p>
-            </div>
           </div>
         </section>
 
-        <section class="section-game">
+        <section class="section-parameters hidden"></section>
 
-        </section>
+        <section class="section-game"></section>
       </div>
     </main>
   </body>

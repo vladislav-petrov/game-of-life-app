@@ -1,5 +1,12 @@
 import * as model from './model.js';
 
+import tabsView from './views/TabsView.js';
+
+
+
+
+
+
 import canvasView from './views/CanvasView.js';
 import Field from './field/Field.js';
 
@@ -13,14 +20,18 @@ const handleCellClick = function(cell) {
 }
 
 const init = function() {
+  tabsView.render();
+
+
+
   // inputView.subscribeHandlerStart(controlInput);
 
-  field.subscribeHandlerManualDraw(handleCellClick);
+  // field.subscribeHandlerManualDraw(handleCellClick);
 
-  field.drawField();
+  // field.drawField();
 
-  model.setFirstGenAliveCells('setPattern', 'glider');
-  field.drawCells(model.state.field.aliveCells);
+  // model.setFirstGenAliveCells('setPattern', 'glider');
+  // field.drawCells(model.state.field.aliveCells);
 
   // setInterval(function() {
   //   model.setNextGenAliveCells();
@@ -30,4 +41,4 @@ const init = function() {
   // }, 500);
 }
 
-// init();
+init();
