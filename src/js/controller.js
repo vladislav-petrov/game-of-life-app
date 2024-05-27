@@ -4,6 +4,8 @@ import tabsView from './views/tabsView/TabsView.js';
 import dimensionView from './views/parametersView/dimensionView/dimensionView.js';
 import configurationView from './views/parametersView/configurationView/ConfigurationView.js';
 
+import Field from './field/Field.js';
+
 const handleChangeDimension = function(dimension) {
   model.setFieldDimension(dimension);
 }
@@ -22,11 +24,10 @@ const handleChangeConfiguration = function(action, pattern = null) {
 
 
 
-import canvasView from './views/CanvasView.js';
-import Field from './field/Field.js';
 
-// canvasView.render();
-// const field = new Field(20);
+
+
+
 
 const controlInput = function(data) {}
 
@@ -39,6 +40,11 @@ const init = function() {
   dimensionView.render(model.state.field.dimension);
   configurationView.render();
 
+  const field = new Field(10);
+
+  field.drawField();
+  field.drawCells(model.state.field.aliveCells);
+
   dimensionView.subscribeHandlerChangeDimension(handleChangeDimension);
   configurationView.subscribeHandlerChangeConfiguration(handleChangeConfiguration);
 
@@ -48,13 +54,12 @@ const init = function() {
 
 
 
-  // inputView.subscribeHandlerStart(controlInput);
+
 
   // field.subscribeHandlerManualDraw(handleCellClick);
 
   // field.drawField();
 
-  // model.setFirstGenAliveCells('setPattern', 'boat');
   // field.drawCells(model.state.field.aliveCells);
 
   // setInterval(function() {

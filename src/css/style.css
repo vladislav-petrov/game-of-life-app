@@ -270,6 +270,56 @@ button {
   /* GAME SECTION */
 
   .section-game {
-    margin-top: 24px;
+    margin-top: 18px;
+    margin-bottom: 24px;
+
+    display: flex;
+
+    gap: 18px;
+
+    .game__sidebar {
+      flex-grow: 1;
+
+      display: flex;
+
+      flex-direction: column;
+      gap: 18px;
+
+      .wrapper-characteristics {
+        display: flex;
+
+        flex-direction: column;
+        gap: 48px;
+
+        .characteristic {
+          display: flex;
+
+          flex-direction: column;
+          gap: 12px;
+
+          .characteristic-value {
+            font-size: 32px;
+            font-weight: 500;
+            color: var(--font-secondary-color);
+          }
+        }
+      }
+
+      .sidebar__btns {
+        display: flex;
+
+        gap: 18px;
+
+        .sidebar__reset,
+        .sidebar__start {
+          background-color: var(--btn-bg-primary-color);
+        }
+
+        .sidebar__reset:hover,
+        .sidebar__start:hover {
+          background-color: var(--btn-bg-secondary-color);
+        }
+      }
+    }
   }
 }

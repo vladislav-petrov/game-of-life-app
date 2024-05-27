@@ -75,6 +75,7 @@ class Field {
     const eventListenerFunction = (event) => {
       const offsetX = event.clientX - this.#rect.left;
       const offsetY = event.clientY - this.#rect.top;
+
       const x = Math.trunc(offsetX / this.#cellSize) + 1;
       const y = Math.trunc(offsetY / this.#cellSize) + 1;
     
