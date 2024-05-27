@@ -1,4 +1,4 @@
-import View from './View.js';
+import View from '../View.js';
 
 class TabsView extends View {
   _parentElement = document.querySelector('.section-tabs');

@@ -8,6 +8,8 @@
 
   --btn-bg-primary-color: var(--bg-secondary-color);
   --btn-bg-secondary-color: #F7E7CE;
+  --btn-bg-tertiary-color: #e7e7e7;
+  --btn-bg-additional-color: var(--bg-primary-color);
 
   /* FONTS */
   --font: 'Montserrat', sans-serif;
@@ -172,7 +174,30 @@ button {
         display: flex;
 
         flex-direction: column;
+        align-items: flex-start;
         gap: 12px;
+
+        .dimension__label {
+
+        }
+
+        .dimension__input {
+          width: 100%;
+          border: none;
+          padding: 12px;
+          color: var(--font-secondary-color);
+          border-radius: 4px;
+          box-shadow: var(--box-shadow);
+        }
+
+        .dimension__btn {
+          margin-top: 12px;
+          background-color: var(--btn-bg-tertiary-color);
+        }
+
+        .dimension__btn:hover {
+          background-color: var(--btn-bg-additional-color);
+        }
       }
     }
   }

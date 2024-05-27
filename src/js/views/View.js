@@ -1,12 +1,12 @@
 class View {
   _data;
 
-  clearContainer() {
+  #clearContainer() {
     this._parentElement.innerHTML = '';
   }
 
   #insertMarkup(markup) {
-      this.clearContainer();
+      this.#clearContainer();
       this._parentElement.insertAdjacentHTML('afterbegin', markup);  
   }
 

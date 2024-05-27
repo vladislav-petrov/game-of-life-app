@@ -1,6 +1,5 @@
 import {
-  X_AXIS,
-  Y_AXIS,
+  DIMENSION,
   NEIGHBOR_OFFSETS,
   PATTERNS
 } from './config.js';
@@ -14,25 +13,21 @@ import {
 const state = {
   status: 'idle',
   field: {
-    dimensions: {
-      x: X_AXIS,
-      y: Y_AXIS
-    },
+    dimension: DIMENSION,
     aliveCells: []
   }
 };
 
-const setFieldDimensions = function(x, y) {
-  state.field.dimensions.x = x;
-  state.field.dimensions.y = y;
+const setFieldDimensions = function(dimension) {
+  state.field.dimension = dimension;
 }
 
 const getNeighbors = function(x, y) {
   return NEIGHBOR_OFFSETS.map(function(offset) {
-    const { x: maxX, y: maxY } = state.field.dimensions;
+    const maxCoord = state.field.dimension;
 
-    const neighborX = getNewCellCoord(x + offset.x, maxX);
-    const neighborY = getNewCellCoord(y + offset.y, maxY);
+    const neighborX = getNewCellCoord(x + offset.x, maxCoord);
+    const neighborY = getNewCellCoord(y + offset.y, maxCoord);
 
     return `${neighborY}_${neighborX}`;
   });

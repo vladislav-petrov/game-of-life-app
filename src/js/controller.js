@@ -1,6 +1,7 @@
 import * as model from './model.js';
 
-import tabsView from './views/TabsView.js';
+import tabsView from './views/tabsView/TabsView.js';
+import dimensionView from './views/dimensionView/dimensionView.js';
 
 
 
@@ -21,6 +22,7 @@ const handleCellClick = function(cell) {
 
 const init = function() {
   tabsView.render();
+  dimensionView.render();
 
 
 

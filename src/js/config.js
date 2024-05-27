@@ -1,6 +1,5 @@
-const X_AXIS = 10;
-const Y_AXIS = 10;
 const MIN_DIMENSION = 6;
+const DIMENSION = 10;
 
 const NEIGHBOR_OFFSETS = [
   { x: -1, y: -1 }, 
@@ -20,9 +19,8 @@ const PATTERNS = {
 };
 
 export {
-  X_AXIS,
-  Y_AXIS,
   MIN_DIMENSION,
+  DIMENSION,
   PATTERNS,
   NEIGHBOR_OFFSETS
 };
