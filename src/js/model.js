@@ -68,6 +68,8 @@ const checkIsGameOver = function() {
 }
 
 const setFirstGenAliveCells = function(action, pattern) {
+  state.field.aliveCells = [];
+
   if (action === 'setPattern') {
     applyPattern(pattern);
   }
