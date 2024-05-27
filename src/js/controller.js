@@ -3,6 +3,7 @@ import * as model from './model.js';
 import tabsView from './views/tabsView/TabsView.js';
 import dimensionView from './views/parametersView/dimensionView/dimensionView.js';
 import configurationView from './views/parametersView/configurationView/ConfigurationView.js';
+import sidebarView from './views/gameView/sidebarView/SidebarView.js';
 
 import Field from './field/Field.js';
 
@@ -39,6 +40,7 @@ const init = function() {
   tabsView.render();
   dimensionView.render(model.state.field.dimension);
   configurationView.render();
+  sidebarView.render(model.state.characteristics);
 
   const field = new Field(10);
 

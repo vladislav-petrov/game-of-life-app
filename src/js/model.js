@@ -15,6 +15,10 @@ const state = {
   field: {
     dimension: DIMENSION,
     aliveCells: []
+  },
+  characteristics: {
+    currentGeneration: null,
+    generationTime: null
   }
 };
 
