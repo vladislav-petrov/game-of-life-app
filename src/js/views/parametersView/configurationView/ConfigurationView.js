@@ -43,7 +43,7 @@ class ConfigurationView extends View {
   }
 
   subscribeHandlerChangeConfiguration(handler) {
-    this._parentElement.addEventListener('click', function(event) {
+    this._parentElement.addEventListener('click', (event) => {
       const targetConfig = event.target.closest('.config');
       const targetRandom = event.target.closest('.configuration__random');
       const target = targetConfig || targetRandom;
