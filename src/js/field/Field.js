@@ -5,7 +5,6 @@ import { getCellCoords, getCellSize } from '../helpers.js';
 class Field {
   #canvas;
   #context;
-  #rect;
   #cellSize;
 
   #gridColor = '#686a6c';
@@ -14,7 +13,6 @@ class Field {
   constructor() {
     this.#canvas = document.getElementById('field');
     this.#context = this.#canvas.getContext('2d');
-    this.#rect = this.#canvas.getBoundingClientRect();
 
     this.#context.strokeStyle = this.#gridColor;
     this.#context.fillStyle = this.#cellsColor;
@@ -23,13 +21,14 @@ class Field {
   }
 
   #normalizeScale() {
+    const rect = this.#canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio;
 
-    this.#canvas.width = this.#rect.width * dpr;
-    this.#canvas.height = this.#rect.height * dpr;
+    this.#canvas.width = rect.width * dpr;
+    this.#canvas.height = rect.height * dpr;
 
-    this.#canvas.style.width = `${this.#rect.width}px`;
-    this.#canvas.style.height = `${this.#rect.height}px`;
+    this.#canvas.style.width = `${rect.width}px`;
+    this.#canvas.style.height = `${rect.height}px`;
 
     this.#context.scale(dpr, dpr);
   }
@@ -77,9 +76,10 @@ class Field {
 
   subscribeHandlerManualDraw(handler) {
     const eventListenerFunction = (event) => {
-      const offsetX = event.clientX - this.#rect.left;
-      const offsetY = event.clientY - this.#rect.top;
-      console.log(event.clientX, this.#rect.left);
+      const rect = this.#canvas.getBoundingClientRect();
+
+      const offsetX = event.x - rect.left;
+      const offsetY = event.y - rect.top;
 
       const x = Math.trunc(offsetX / this.#cellSize) + 1;
       const y = Math.trunc(offsetY / this.#cellSize) + 1;
