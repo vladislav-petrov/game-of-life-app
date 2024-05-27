@@ -22,7 +22,7 @@ const handleCellClick = function(cell) {
 
 const init = function() {
   tabsView.render();
-  dimensionView.render();
+  dimensionView.render(model.state.field.dimension);
 
 
 

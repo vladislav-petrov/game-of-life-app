@@ -20,7 +20,7 @@ class DimensionView extends View {
               id="dimension"
               name="dimension"
               min="${MIN_DIMENSION}"
-              value="${this._data.dimension}"
+              value="${this._data}"
             />
 
             <button class="dimension__btn btn">
