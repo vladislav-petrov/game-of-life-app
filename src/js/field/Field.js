@@ -60,8 +60,8 @@ class Field {
     const [x, y] = getCellCoords(cell);
 
     this.#context.fillRect(
-      (x) * this.#cellSize,
-      (y) * this.#cellSize,
+      (x - 1) * this.#cellSize,
+      (y - 1) * this.#cellSize,
       this.#cellSize,
       this.#cellSize
     );
@@ -73,14 +73,13 @@ class Field {
 
   reset() {
     this.#context.clearRect(0, 0, this.#canvas.width, this.#canvas.height);
-
-		this.drawField();
   }
 
   subscribeHandlerManualDraw(handler) {
     const eventListenerFunction = (event) => {
       const offsetX = event.clientX - this.#rect.left;
       const offsetY = event.clientY - this.#rect.top;
+      console.log(event.clientX, this.#rect.left);
 
       const x = Math.trunc(offsetX / this.#cellSize) + 1;
       const y = Math.trunc(offsetY / this.#cellSize) + 1;

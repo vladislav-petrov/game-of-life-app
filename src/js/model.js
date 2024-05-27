@@ -26,6 +26,12 @@ const setFieldDimension = function(dimension) {
   state.field.dimension = dimension;
 }
 
+const addCell = function(cell) {
+  if (!state.field.aliveCells.includes(cell)) {
+    state.field.aliveCells.push(cell);
+  }
+}
+
 const getNeighbors = function(x, y) {
   return NEIGHBOR_OFFSETS.map(function(offset) {
     const maxCoord = state.field.dimension;
@@ -67,9 +73,9 @@ const applyRandom = function() {
   }
 }
 
-const checkIsGameOver = function() {
+// const checkIsGameOver = function() {
   
-}
+// }
 
 const setFirstGenAliveCells = function(action, pattern) {
   state.field.aliveCells = [];
@@ -80,10 +86,6 @@ const setFirstGenAliveCells = function(action, pattern) {
 
   if (action === 'setRandom') {
     applyRandom();
-  }
-
-  if (action === 'setManual') {
-    //todo
   }
 }
 
@@ -130,6 +132,7 @@ const setNextGenAliveCells = function() {
 export {
   state,
   setFieldDimension,
+  addCell,
   setFirstGenAliveCells,
   setNextGenAliveCells
 };

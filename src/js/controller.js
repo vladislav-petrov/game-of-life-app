@@ -13,14 +13,24 @@ let field;
 const handleChangeDimension = function(dimension) {
   model.setFieldDimension(dimension);
 
+  dimensionView.render(model.state.field.dimension);
+
   field.reset();
   field.drawField(model.state.field.dimension);
-
-  dimensionView.render(model.state.field.dimension);
 }
 
 const handleChangeConfiguration = function(action, pattern = null) {
   model.setFirstGenAliveCells(action, pattern);
+
+  field.reset();
+  field.drawField(model.state.field.dimension);
+  field.drawCells(model.state.field.aliveCells);
+}
+
+const handleAddCell = function(cell) {
+  model.addCell(cell);
+
+  field.drawCell(cell);
 }
 
 const init = function() {
@@ -30,14 +40,14 @@ const init = function() {
   sidebarView.render(model.state.characteristics);
   fieldView.render();
 
-  field = new Field();
-
-  field.drawField(model.state.field.dimension);
-  field.drawCells(model.state.field.aliveCells);
-
   dimensionView.subscribeHandlerChangeDimension(handleChangeDimension);
   configurationView.subscribeHandlerChangeConfiguration(handleChangeConfiguration);
 
+  field = new Field();
+
+  field.drawField(model.state.field.dimension);
+
+  field.subscribeHandlerManualDraw(handleAddCell);
 
 
 
@@ -46,11 +56,9 @@ const init = function() {
 
 
 
-  // field.subscribeHandlerManualDraw(handleCellClick);
 
-  // field.drawField();
 
-  // field.drawCells(model.state.field.aliveCells);
+
 
   // setInterval(function() {
   //   model.setNextGenAliveCells();
