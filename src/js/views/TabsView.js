@@ -52,7 +52,7 @@ class TabsView extends View {
     const tabs = Array.from(this._parentElement.querySelectorAll('.tab'));
     const target = event.target.closest('.tab');
 
-    if (!target.classList.contains('tab')) return;
+    if (!target?.classList.contains('tab')) return;
 
     tabs.forEach((tab) => {
       const tabIconArrowRight = tab.querySelector('.icon-arrow-right');

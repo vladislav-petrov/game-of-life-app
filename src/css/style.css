@@ -153,6 +153,18 @@ button {
     }
   }
 
+  /* PARAMETERS SECTION */
+
+  .section-parameters {
+    margin-top: 18px;
+
+    .wrapper-parameters {
+      display: flex;
+
+      gap: 24px;
+    }
+  }
+
   /* GAME SECTION */
 
   .section-game {
