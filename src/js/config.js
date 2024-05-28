@@ -1,6 +1,7 @@
 const MIN_DIMENSION = 6;
 const DIMENSION = 10;
 const FIELD_SIZE = 800;
+const CELL_SIZE = 8;
 const GRID_COLOR = '#686A6C';
 const CELLS_COLOR = '#000000';
 
@@ -42,6 +43,7 @@ export {
   MIN_DIMENSION,
   DIMENSION,
   FIELD_SIZE,
+  CELL_SIZE,
   GRID_COLOR,
   CELLS_COLOR,
   PATTERNS,

@@ -1,4 +1,9 @@
-import { FIELD_SIZE, GRID_COLOR, CELLS_COLOR } from '../config.js';
+import {
+  FIELD_SIZE,
+  CELL_SIZE,
+  GRID_COLOR,
+  CELLS_COLOR
+} from '../config.js';
 
 import { getCellCoords, getCellSize } from '../helpers.js';
 
@@ -38,7 +43,8 @@ class Field {
   }
 
   drawField(dimension) {
-    this.#cellSize = getCellSize(FIELD_SIZE, dimension);
+    this.#cellSize = dimension > 100 ?
+      CELL_SIZE : getCellSize(FIELD_SIZE, dimension);
 
 		for (let i = 0; Math.round(i) <= this.#canvas.width; i += this.#cellSize) {
 			this.#context.beginPath();

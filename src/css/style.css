@@ -277,6 +277,12 @@ button {
 
     gap: 18px;
 
+    .game__field {
+      width: 800px;
+      height: 800px;
+      overflow: scroll;
+    }
+
     .game__sidebar {
       flex-grow: 1;
 

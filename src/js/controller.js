@@ -1,5 +1,7 @@
 import * as model from './model.js';
 
+import { CELL_SIZE } from './config.js';
+
 import tabsView from './views/tabsView/TabsView.js';
 import dimensionView from './views/parametersView/dimensionView/dimensionView.js';
 import configurationView from './views/parametersView/configurationView/ConfigurationView.js';
@@ -15,8 +17,17 @@ const handleChangeDimension = function(dimension) {
 
   dimensionView.render(model.state.field.dimension);
 
-  field.reset();
+  // Если размерность поля больше 100 -
+  // рендерим канвас большего размера
+  if (model.state.field.dimension > 100) {
+    fieldView.render(model.state.field.dimension);
+  }
+
+  field = new Field(CELL_SIZE);
+
   field.drawField(model.state.field.dimension);
+
+  field.subscribeHandlerManualDraw(handleAddCell);
 }
 
 const handleChangeConfiguration = function(action, pattern = null) {
@@ -38,7 +49,7 @@ const init = function() {
   dimensionView.render(model.state.field.dimension);
   configurationView.render();
   sidebarView.render(model.state.characteristics);
-  fieldView.render();
+  fieldView.render(model.state.field.dimension);
 
   dimensionView.subscribeHandlerChangeDimension(handleChangeDimension);
   configurationView.subscribeHandlerChangeConfiguration(handleChangeConfiguration);
