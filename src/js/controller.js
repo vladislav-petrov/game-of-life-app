@@ -74,7 +74,7 @@ const tick = function() {
 
   if (model.state.status === 'active') {
     setTimeout(function() {
-      window.requestAnimationFrame(tick);
+      requestAnimationFrame(tick);
     }, NEXT_GEN_TIME);
 
     return;
