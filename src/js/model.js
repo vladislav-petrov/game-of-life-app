@@ -126,6 +126,10 @@ const setNextGenAliveCells = function() {
   state.field.aliveCells = [ ...nextGenAliveCells ];
 }
 
+const setStatus = function() {
+  state.status = state.status === 'idle' ? 'active' : 'idle';
+}
+
 const reset = function() {
   state.field.aliveCells = [];
 
@@ -139,5 +143,6 @@ export {
   addCell,
   setFirstGenAliveCells,
   setNextGenAliveCells,
+  setStatus,
   reset
 };

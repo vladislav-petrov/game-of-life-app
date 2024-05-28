@@ -60,7 +60,11 @@ const handleReset = function() {
 }
 
 const handleStart = function() {
+  model.setStatus();
 
+  dimensionView.render(model.state);
+  configurationView.render(model.state);
+  sidebarView.render(model.state);
 }
 
 const init = function() {

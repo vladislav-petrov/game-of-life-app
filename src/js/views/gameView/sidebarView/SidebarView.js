@@ -4,7 +4,7 @@ class SidebarView extends View {
   _parentElement = document.querySelector('.game__sidebar');
 
   _generateMarkup() {
-    const status = this._data;
+    const { status } = this._data;
     const { aliveCells } = this._data.field;
     const { currentGeneration, generationTime } = this._data.characteristics;
 
@@ -55,7 +55,7 @@ class SidebarView extends View {
     });
   }
 
-  subscribeHandlerStart() {
+  subscribeHandlerStart(handler) {
     this._parentElement.addEventListener('click', (event) => {
       if (!event.target.classList.contains('sidebar__start')) return;
 
