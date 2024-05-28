@@ -16,7 +16,7 @@ const handleChangeDimension = function(dimension) {
   model.reset();
   model.setFieldDimension(dimension);
 
-  dimensionView.render(model.state.field.dimension);
+  dimensionView.render(model.state);
   sidebarView.render(model.state);
 
   // Если размерность поля больше 100 -
@@ -65,7 +65,7 @@ const handleStart = function() {
 
 const init = function() {
   tabsView.render();
-  dimensionView.render(model.state.field.dimension);
+  dimensionView.render(model.state);
   configurationView.render();
   sidebarView.render(model.state);
   fieldView.render(model.state.field.dimension);

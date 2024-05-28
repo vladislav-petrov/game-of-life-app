@@ -45,10 +45,6 @@ button {
   border: none;
 }
 
-/* ul {
-  list-style: none;
-} */
-
 .wrapper {
   width: 1360px;
   margin: 0 auto;
@@ -73,6 +69,10 @@ button {
 
 .hidden {
   display: none !important;
+}
+
+.disabled {
+  pointer-events: none;
 }
 
 /* HEADER */

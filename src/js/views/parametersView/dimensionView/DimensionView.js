@@ -6,6 +6,9 @@ class DimensionView extends View {
   _parentElement = document.querySelector('.parameters__dimension');
 
   _generateMarkup() {
+    const { status } = this._data;
+    const { dimension } = this._data.field;
+
     return (
       `
         <div class="wrapper-block">
@@ -15,15 +18,17 @@ class DimensionView extends View {
             </label>
 
             <input
-              class="dimension__input"
+              class="dimension__input ${status === 'idle' ? '' : 'disabled'}"
               type="number"
               id="dimension"
               name="dimension"
               min="${MIN_DIMENSION}"
-              value="${this._data}"
+              value="${dimension}"
             />
 
-            <button class="dimension__btn btn">
+            <button
+              class="dimension__btn btn ${status === 'idle' ? '' : 'disabled'}"
+            >
               Применить
             </button>
           </form>
@@ -42,7 +47,7 @@ class DimensionView extends View {
       const data = Object.fromEntries(new FormData(event.target));
       const dimension = +data.dimension;
 
-      if (dimension === this._data) return;
+      if (dimension === this._data.field.dimension) return;
 
       handler(dimension);
     });
