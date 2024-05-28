@@ -16,8 +16,8 @@ const handleChangeDimension = function(dimension) {
   model.reset();
   model.setFieldDimension(dimension);
 
-  dimensionView.render(model.state);
-  sidebarView.render(model.state);
+  dimensionView.update(model.state);
+  sidebarView.update(model.state);
 
   // Если размерность поля больше 100 -
   // рендерим канвас большего размера
@@ -35,28 +35,28 @@ const handleChangeDimension = function(dimension) {
 const handleChangeConfiguration = function(action, pattern = null) {
   model.setFirstGenAliveCells(action, pattern);
 
+  sidebarView.update(model.state);
+
   field.reset();
   field.drawField(model.state.field.dimension);
   field.drawCells(model.state.field.aliveCells);
-
-  sidebarView.render(model.state);
 }
 
 const handleAddCell = function(cell) {
   model.addCell(cell);
 
-  field.drawCell(cell);
+  sidebarView.update(model.state);
 
-  sidebarView.render(model.state);
+  field.drawCell(cell);
 }
 
 const handleReset = function() {
   model.reset();
 
+  sidebarView.update(model.state);
+
   field.reset();
   field.drawField(model.state.field.dimension);
-
-  sidebarView.render(model.state);
 }
 
 const tick = function() {
@@ -66,7 +66,7 @@ const tick = function() {
   field.drawField(model.state.field.dimension);
   field.drawCells(model.state.field.aliveCells);
 
-  sidebarView.render(model.state);
+  sidebarView.update(model.state);
 
   if (model.state.status === 'active') {
     setTimeout(function() {
@@ -75,13 +75,13 @@ const tick = function() {
 
     return;
   }
-
-  dimensionView.render(model.state);
-  configurationView.render(model.state);
 }
 
 const handleStart = function() {
   model.setStatus();
+
+  dimensionView.update(model.state);
+  configurationView.update(model.state);
 
   setTimeout(tick, NEXT_GEN_TIME);
 }
@@ -99,9 +99,7 @@ const init = function() {
   sidebarView.subscribeHandlerStart(handleStart);
 
   field = new Field();
-
   field.drawField(model.state.field.dimension);
-
   field.subscribeHandlerManualDraw(handleAddCell);
 }
 
