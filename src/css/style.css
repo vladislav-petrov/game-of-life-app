@@ -8,7 +8,7 @@
 
   --btn-bg-primary-color: var(--bg-secondary-color);
   --btn-bg-secondary-color: #F7E7CE;
-  --btn-bg-tertiary-color: #e7e7e7;
+  --btn-bg-tertiary-color: #E7E7E7;
   --btn-bg-additional-color: var(--bg-primary-color);
 
   /* FONTS */
@@ -275,6 +275,7 @@ button {
   /* GAME SECTION */
 
   .section-game {
+    position: relative;
     margin-top: 18px;
     margin-bottom: 24px;
 
@@ -337,6 +338,21 @@ button {
           background-color: var(--btn-bg-primary-color);
         }
       }
+    }
+
+    .game__game-over-text {
+      position: absolute;
+      padding: 16px 32px;
+      text-transform: uppercase;
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--font-secondary-color);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: var(--bg-secondary-color);
+      border-radius: 4px;
+      box-shadow: var(--box-shadow);
     }
   }
 }

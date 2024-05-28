@@ -13,6 +13,9 @@ const GEN_COEFF = 0.7;
 // Задержка перед генерацией нового поколения в мс
 const NEXT_GEN_TIME = 100;
 
+// Время показа сообщения в мс
+const MSG_APPEARANCE_TIME = 2000;
+
 const NEIGHBOR_OFFSETS = [
   { x: -1, y: -1 }, 
   { x: 0, y: -1 }, 
@@ -56,6 +59,7 @@ export {
   CELLS_COLOR,
   GEN_COEFF,
   NEXT_GEN_TIME,
+  MSG_APPEARANCE_TIME,
   PATTERNS,
   NEIGHBOR_OFFSETS
 };

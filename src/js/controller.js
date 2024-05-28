@@ -7,6 +7,7 @@ import dimensionView from './views/parametersView/dimensionView/dimensionView.js
 import configurationView from './views/parametersView/configurationView/ConfigurationView.js';
 import sidebarView from './views/gameView/sidebarView/SidebarView.js';
 import fieldView from './views/gameView/fieldView/FieldView.js';
+import gameOverTextView from './views/gameView/gameOverTextView/gameOverTextView.js';
 
 import Field from './field/Field.js';
 
@@ -94,6 +95,10 @@ const handleStart = function(changeStatus = true) {
     model.changeStatus();
   }
 
+  if (model.state.status === 'idle') {
+    gameOverTextView.show();
+  }
+
   fieldView.update(model.state);
   sidebarView.update(model.state);
   dimensionView.update(model.state);
@@ -111,6 +116,8 @@ const init = function() {
   configurationView.render(model.state);
   sidebarView.render(model.state);
   fieldView.render(model.state);
+  gameOverTextView.render();
+
 
   dimensionView.subscribeHandlerChangeDimension(handleChangeDimension);
   configurationView.subscribeHandlerChangeConfiguration(handleChangeConfiguration);
