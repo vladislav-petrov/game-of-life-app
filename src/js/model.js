@@ -8,7 +8,8 @@ import {
 import {
   getCellCoords,
   getNewCellCoord,
-  checkIsAlive
+  checkIsAlive,
+  checkAreSetsEqual
 } from './helpers.js';
 
 const state = {
@@ -68,9 +69,19 @@ const applyRandom = function() {
   }
 }
 
-// const checkIsGameOver = function() {
-  
-// }
+const checkIsGameOver = function(nextGenAliveCells) {
+  const setCur = new Set(state.field.aliveCells);
+  const setNext = new Set(nextGenAliveCells);
+
+  if (
+    checkAreSetsEqual(setCur, setNext) ||
+    nextGenAliveCells.length === 0
+  ) {
+    return true;
+  }
+
+  return false;
+}
 
 const setFirstGenAliveCells = function(action, pattern) {
   state.field.aliveCells = [];
@@ -122,6 +133,12 @@ const setNextGenAliveCells = function() {
       checkedNeighbors.push(neighbor);
     });
   });
+
+  const isGameOver = checkIsGameOver(nextGenAliveCells);
+
+  if (isGameOver) {
+    state.status = 'idle';
+  }
 
   state.field.aliveCells = [ ...nextGenAliveCells ];
 }

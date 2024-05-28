@@ -16,13 +16,18 @@ const getNewCellCoord = function(coord, maxCoord) {
   return coord;
 }
 
+const getCellSize = (fieldSize, dimension) => fieldSize / dimension;
+
 const checkIsAlive = (cell, aliveCells) => aliveCells.includes(cell);
 
-const getCellSize = (fieldSize, dimension) => fieldSize / dimension;
+const checkAreSetsEqual = function(set1, set2) {
+  return set1.size === set2.size && [...set1].every((value) => set2.has(value));
+}
 
 export {
   getCellCoords,
   getNewCellCoord,
   checkIsAlive,
+  checkAreSetsEqual,
   getCellSize
 };
