@@ -7,6 +7,8 @@ class ConfigurationView extends View {
     document.querySelector('.parameters__configuration');
 
   _generateMarkup() {
+    const { status } = this._data;
+
     return (
       `
         <div class="wrapper-block wrapper-configuration">
@@ -18,7 +20,9 @@ class ConfigurationView extends View {
             ${Object.entries(PATTERNS).map(function(pattern) {
               return (
                 `
-                  <div class="config" id="${pattern.at(0)}">
+                  <div
+                    class="config ${status === 'idle' ? '' : 'disabled'}" id="${pattern.at(0)}"
+                  >
                     <img
                       class="config__img"
                       src="../../../../../public/${pattern.at(0)}.png"
@@ -34,7 +38,9 @@ class ConfigurationView extends View {
             }).join('')}
           </div>
 
-          <button class="configuration__random btn">
+          <button
+            class="configuration__random btn ${status === 'idle' ? '' : 'disabled'}"
+          >
             Случайная конфигурация
           </button>
         </div>

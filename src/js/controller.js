@@ -66,7 +66,7 @@ const handleStart = function() {
 const init = function() {
   tabsView.render();
   dimensionView.render(model.state);
-  configurationView.render();
+  configurationView.render(model.state);
   sidebarView.render(model.state);
   fieldView.render(model.state.field.dimension);
 
