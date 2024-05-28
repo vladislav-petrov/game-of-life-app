@@ -22,7 +22,7 @@ const handleChangeDimension = function(dimension) {
   // Если размерность поля больше 100 -
   // рендерим канвас большего размера
   if (model.state.field.dimension > 100) {
-    fieldView.render(model.state.field.dimension);
+    fieldView.render(model.state);
 
     field = new Field(CELL_SIZE);
     field.subscribeHandlerManualDraw(handleAddCell);
@@ -68,7 +68,7 @@ const init = function() {
   dimensionView.render(model.state);
   configurationView.render(model.state);
   sidebarView.render(model.state);
-  fieldView.render(model.state.field.dimension);
+  fieldView.render(model.state);
 
   dimensionView.subscribeHandlerChangeDimension(handleChangeDimension);
   configurationView.subscribeHandlerChangeConfiguration(handleChangeConfiguration);
