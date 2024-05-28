@@ -29,11 +29,11 @@ const handleChangeDimension = function(dimension) {
     field.subscribeHandlerManualDraw(handleAddCell);
   }
 
-  field.reset();
-  field.drawField(model.state.field.dimension);
-
   dimensionView.update(model.state);
   sidebarView.update(model.state);
+
+  field.reset();
+  field.drawField(model.state.field.dimension);
 }
 
 const handleChangeConfiguration = function(action, pattern = null) {
