@@ -143,6 +143,8 @@ const setNextGenAliveCells = function() {
 
   if (isGameOver) {
     changeStatus();
+
+    return;
   }
 
   state.field.aliveCells = [ ...nextGenAliveCells ];

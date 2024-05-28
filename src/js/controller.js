@@ -64,32 +64,39 @@ const handleReset = function() {
 }
 
 const tick = function() {
+  if (model.state.status === 'idle') return;
+
   model.setNextGenAliveCells();
-
-  field.reset();
-  field.drawField(model.state.field.dimension);
-  field.drawCells(model.state.field.aliveCells);
-
-  sidebarView.update(model.state);
 
   if (model.state.status === 'active') {
     setTimeout(function() {
       requestAnimationFrame(tick);
     }, NEXT_GEN_TIME);
 
+    sidebarView.update();
+
+    field.reset();
+    field.drawField(model.state.field.dimension);
+    field.drawCells(model.state.field.aliveCells);
+
     return;
   }
 
-  dimensionView.update(model.state);
-  configurationView.update(model.state);
+  handleStart(false);
 }
 
-const handleStart = function() {
-  model.changeStatus();
+const handleStart = function(changeStatus = true) {
+  if (changeStatus) {
+    model.changeStatus();
+  }
 
-  fieldView.update();
+  fieldView.update(model.state);
+  sidebarView.update(model.state);
   dimensionView.update(model.state);
   configurationView.update(model.state);
+
+  field.reset();
+  field.drawField(model.state.field.dimension);
 
   tick();
 }
