@@ -1,6 +1,8 @@
 const MIN_DIMENSION = 6;
 const DIMENSION = 10;
 const FIELD_SIZE = 800;
+const GRID_COLOR = '#686A6C';
+const CELLS_COLOR = '#000000';
 
 const NEIGHBOR_OFFSETS = [
   { x: -1, y: -1 }, 
@@ -40,6 +42,8 @@ export {
   MIN_DIMENSION,
   DIMENSION,
   FIELD_SIZE,
+  GRID_COLOR,
+  CELLS_COLOR,
   PATTERNS,
   NEIGHBOR_OFFSETS
 };

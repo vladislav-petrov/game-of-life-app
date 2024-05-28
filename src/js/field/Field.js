@@ -1,4 +1,4 @@
-import { FIELD_SIZE } from '../config.js';
+import { FIELD_SIZE, GRID_COLOR, CELLS_COLOR } from '../config.js';
 
 import { getCellCoords, getCellSize } from '../helpers.js';
 
@@ -7,8 +7,8 @@ class Field {
   #context;
   #cellSize;
 
-  #gridColor = '#686a6c';
-  #cellsColor = '#000000';
+  #gridColor = GRID_COLOR;
+  #cellsColor = CELLS_COLOR;
 
   constructor() {
     this.#canvas = document.getElementById('field');
