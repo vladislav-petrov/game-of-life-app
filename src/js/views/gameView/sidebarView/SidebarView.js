@@ -45,7 +45,7 @@ class SidebarView extends View {
     );
   }
 
-  subscribeResetHandler(handler) {
+  subscribeHandlerReset(handler) {
     this._parentElement.addEventListener('click', (event) => {
       if (!event.target.classList.contains('sidebar__reset')) return;
 
@@ -53,8 +53,12 @@ class SidebarView extends View {
     });
   }
 
-  subscribeStartHandler() {
+  subscribeHandlerStart() {
+    this._parentElement.addEventListener('click', (event) => {
+      if (!event.target.classList.contains('sidebar__start')) return;
 
+      handler();
+    });
   }
 }
 

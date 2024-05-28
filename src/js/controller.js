@@ -49,6 +49,10 @@ const handleReset = function() {
   field.drawField(model.state.field.dimension);
 }
 
+const handleStart = function() {
+  
+}
+
 const init = function() {
   tabsView.render();
   dimensionView.render(model.state.field.dimension);
@@ -58,7 +62,8 @@ const init = function() {
 
   dimensionView.subscribeHandlerChangeDimension(handleChangeDimension);
   configurationView.subscribeHandlerChangeConfiguration(handleChangeConfiguration);
-  sidebarView.subscribeResetHandler(handleReset);
+  sidebarView.subscribeHandlerReset(handleReset);
+  sidebarView.subscribeHandlerStart(handleStart);
 
   field = new Field();
 

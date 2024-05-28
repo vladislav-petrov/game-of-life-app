@@ -5,6 +5,11 @@ const CELL_SIZE = 8;
 const GRID_COLOR = '#686A6C';
 const CELLS_COLOR = '#000000';
 
+// Вероятность, что при генерации случайной конфигурации
+// клетка останется пустой (для не слишком сильной
+// заселенности поля)
+const GEN_COEFF = 0.7;
+
 const NEIGHBOR_OFFSETS = [
   { x: -1, y: -1 }, 
   { x: 0, y: -1 }, 
@@ -46,6 +51,7 @@ export {
   CELL_SIZE,
   GRID_COLOR,
   CELLS_COLOR,
+  GEN_COEFF,
   PATTERNS,
   NEIGHBOR_OFFSETS
 };
