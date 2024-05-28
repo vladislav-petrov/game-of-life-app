@@ -42,15 +42,15 @@ class Field {
 
 		for (let i = 0; Math.round(i) <= this.#canvas.width; i += this.#cellSize) {
 			this.#context.beginPath();
-			this.#context.moveTo(i, 0);
-			this.#context.lineTo(i, this.#canvas.height);
+			this.#context.moveTo(Math.round(i), 0);
+			this.#context.lineTo(Math.round(i), this.#canvas.height);
 			this.#context.stroke();
 		}
 
 		for (let j = 0; Math.round(j) <= this.#canvas.height; j += this.#cellSize) {
 			this.#context.beginPath();
-			this.#context.moveTo(0, j);
-			this.#context.lineTo(this.#canvas.width, j);
+			this.#context.moveTo(0, Math.round(j));
+			this.#context.lineTo(this.#canvas.width, Math.round(j));
 			this.#context.stroke();
 		}
   }
