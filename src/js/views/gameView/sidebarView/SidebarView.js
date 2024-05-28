@@ -35,7 +35,7 @@ class SidebarView extends View {
         </div>
 
         <div class="sidebar__btns">
-          <button class="sidebar__reset btn ${status === 'idle' ? '' : 'disabled'}">
+          <button class="sidebar__reset btn ${status === 'active' || aliveCells.length === 0 ? 'disabled' : ''}">
             Очистить поле
           </button>
 
