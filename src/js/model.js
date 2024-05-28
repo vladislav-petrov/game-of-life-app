@@ -60,8 +60,13 @@ const applyPattern = function(pattern) {
 }
 
 const applyRandom = function() {
-  for (let i = 1; i <= state.field.dimension; i++) {
-    for (let j = 1; j <= state.field.dimension; j++) {
+  // Ограничиваем поле размерами 100x100 для лучшей
+  // производительности
+  const maxCoord = state.field.dimension > 100 ?
+    100 : state.field.dimension;
+
+  for (let i = 1; i <= maxCoord; i++) {
+    for (let j = 1; j <= maxCoord; j++) {
       if (Math.random() < GEN_COEFF) continue;
 
       state.field.aliveCells.push(`${i}_${j}`);
