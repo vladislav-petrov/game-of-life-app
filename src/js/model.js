@@ -29,6 +29,10 @@ const setFieldDimension = function(dimension) {
 
 const addCell = function(cell) {
   if (!state.field.aliveCells.includes(cell)) {
+    if (state.field.aliveCells.length === 0) {
+      state.characteristics.currentGeneration = 1;
+    }
+
     state.field.aliveCells.push(cell);
   }
 }
@@ -78,6 +82,8 @@ const setFirstGenAliveCells = function(action, pattern) {
   if (action === 'setRandom') {
     applyRandom();
   }
+
+  state.characteristics.currentGeneration = 1;
 }
 
 const setNextGenAliveCells = function() {
@@ -120,10 +126,18 @@ const setNextGenAliveCells = function() {
   state.field.aliveCells = [ ...nextGenAliveCells ];
 }
 
+const reset = function() {
+  state.field.aliveCells = [];
+
+  state.characteristics.currentGeneration = null;
+  state.characteristics.generationTime = null;
+}
+
 export {
   state,
   setFieldDimension,
   addCell,
   setFirstGenAliveCells,
-  setNextGenAliveCells
+  setNextGenAliveCells,
+  reset
 };

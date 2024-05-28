@@ -4,7 +4,9 @@ class SidebarView extends View {
   _parentElement = document.querySelector('.game__sidebar');
 
   _generateMarkup() {
-    const { currentGeneration, generationTime } = this._data;
+    const status = this._data;
+    const { aliveCells } = this._data.field;
+    const { currentGeneration, generationTime } = this._data.characteristics;
 
     return (
       `
@@ -33,12 +35,12 @@ class SidebarView extends View {
         </div>
 
         <div class="sidebar__btns">
-          <button class="sidebar__reset btn">
+          <button class="sidebar__reset btn ${status === 'idle' ? '' : 'disabled'}">
             Очистить поле
           </button>
 
-          <button class="sidebar__start btn">
-            Начать игру
+          <button class="sidebar__start btn ${aliveCells.length ? '' : 'disabled'}">
+            ${status === 'idle' ? 'Начать игру' : 'Завершить игру'}
           </button>
         </div>
       `

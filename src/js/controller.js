@@ -13,9 +13,11 @@ import Field from './field/Field.js';
 let field;
 
 const handleChangeDimension = function(dimension) {
+  model.reset();
   model.setFieldDimension(dimension);
 
   dimensionView.render(model.state.field.dimension);
+  sidebarView.render(model.state);
 
   // Если размерность поля больше 100 -
   // рендерим канвас большего размера
@@ -36,28 +38,36 @@ const handleChangeConfiguration = function(action, pattern = null) {
   field.reset();
   field.drawField(model.state.field.dimension);
   field.drawCells(model.state.field.aliveCells);
+
+  sidebarView.render(model.state);
 }
 
 const handleAddCell = function(cell) {
   model.addCell(cell);
 
   field.drawCell(cell);
+
+  sidebarView.render(model.state);
 }
 
 const handleReset = function() {
+  model.reset();
+
   field.reset();
   field.drawField(model.state.field.dimension);
+
+  sidebarView.render(model.state);
 }
 
 const handleStart = function() {
-  
+
 }
 
 const init = function() {
   tabsView.render();
   dimensionView.render(model.state.field.dimension);
   configurationView.render();
-  sidebarView.render(model.state.characteristics);
+  sidebarView.render(model.state);
   fieldView.render(model.state.field.dimension);
 
   dimensionView.subscribeHandlerChangeDimension(handleChangeDimension);
