@@ -13,7 +13,7 @@ class FieldView extends View {
     return (
       `
         <canvas
-          class="${status === 'idle' ? '' : 'disabled'}"
+          class="${status === 'idle' ? '' : 'field-disabled'}"
           id="field"
           width="${fieldSize}"
           height="${fieldSize}"

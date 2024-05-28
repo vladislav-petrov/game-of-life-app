@@ -1,6 +1,6 @@
 import * as model from './model.js';
 
-import { CELL_SIZE, NEXT_GEN_TIME } from './config.js';
+import { NEXT_GEN_TIME } from './config.js';
 
 import tabsView from './views/tabsView/TabsView.js';
 import dimensionView from './views/parametersView/dimensionView/dimensionView.js';
@@ -87,6 +87,7 @@ const tick = function() {
 const handleStart = function() {
   model.changeStatus();
 
+  fieldView.update();
   dimensionView.update(model.state);
   configurationView.update(model.state);
 
