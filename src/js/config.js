@@ -10,6 +10,9 @@ const CELLS_COLOR = '#000000';
 // заселенности поля)
 const GEN_COEFF = 0.7;
 
+// Задержка перед генерацией нового поколения в мс
+const NEXT_GEN_TIME = 100;
+
 const NEIGHBOR_OFFSETS = [
   { x: -1, y: -1 }, 
   { x: 0, y: -1 }, 
@@ -52,6 +55,7 @@ export {
   GRID_COLOR,
   CELLS_COLOR,
   GEN_COEFF,
+  NEXT_GEN_TIME,
   PATTERNS,
   NEIGHBOR_OFFSETS
 };

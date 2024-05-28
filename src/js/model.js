@@ -141,10 +141,15 @@ const setNextGenAliveCells = function() {
   }
 
   state.field.aliveCells = [ ...nextGenAliveCells ];
+  state.characteristics.currentGeneration++;
 }
 
 const setStatus = function() {
   state.status = state.status === 'idle' ? 'active' : 'idle';
+
+  if (state.status === 'idle') {
+    reset();
+  }
 }
 
 const reset = function() {

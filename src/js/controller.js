@@ -1,6 +1,6 @@
 import * as model from './model.js';
 
-import { CELL_SIZE } from './config.js';
+import { CELL_SIZE, NEXT_GEN_TIME } from './config.js';
 
 import tabsView from './views/tabsView/TabsView.js';
 import dimensionView from './views/parametersView/dimensionView/dimensionView.js';
@@ -59,12 +59,31 @@ const handleReset = function() {
   sidebarView.render(model.state);
 }
 
-const handleStart = function() {
-  model.setStatus();
+const tick = function() {
+  model.setNextGenAliveCells();
+
+  field.reset();
+  field.drawField(model.state.field.dimension);
+  field.drawCells(model.state.field.aliveCells);
+
+  sidebarView.render(model.state);
+
+  if (model.state.status === 'active') {
+    setTimeout(function() {
+      window.requestAnimationFrame(tick);
+    }, NEXT_GEN_TIME);
+
+    return;
+  }
 
   dimensionView.render(model.state);
   configurationView.render(model.state);
-  sidebarView.render(model.state);
+}
+
+const handleStart = function() {
+  model.setStatus();
+
+  setTimeout(tick, NEXT_GEN_TIME);
 }
 
 const init = function() {
@@ -84,24 +103,6 @@ const init = function() {
   field.drawField(model.state.field.dimension);
 
   field.subscribeHandlerManualDraw(handleAddCell);
-
-
-
-
-
-
-
-
-
-
-
-
-  // setInterval(function() {
-  //   model.setNextGenAliveCells();
-
-  //   field.reset();
-  //   field.drawCells(model.state.field.aliveCells);
-  // }, 500);
 }
 
 init();
