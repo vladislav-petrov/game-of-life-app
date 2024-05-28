@@ -38,16 +38,16 @@ class Field {
   }
 
   drawField(dimension) {
-    this.#cellSize = Math.trunc(getCellSize(FIELD_SIZE, dimension));
+    this.#cellSize = getCellSize(FIELD_SIZE, dimension);
 
-		for (let i = 0; i <= this.#canvas.width; i += this.#cellSize) {
+		for (let i = 0; Math.round(i) <= this.#canvas.width; i += this.#cellSize) {
 			this.#context.beginPath();
 			this.#context.moveTo(i, 0);
 			this.#context.lineTo(i, this.#canvas.height);
 			this.#context.stroke();
 		}
 
-		for (let j = 0; j <= this.#canvas.height; j += this.#cellSize) {
+		for (let j = 0; Math.round(j) <= this.#canvas.height; j += this.#cellSize) {
 			this.#context.beginPath();
 			this.#context.moveTo(0, j);
 			this.#context.lineTo(this.#canvas.width, j);
