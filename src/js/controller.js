@@ -21,13 +21,13 @@ const handleChangeDimension = function(dimension) {
   // рендерим канвас большего размера
   if (model.state.field.dimension > 100) {
     fieldView.render(model.state.field.dimension);
+
+    field = new Field(CELL_SIZE);
+    field.subscribeHandlerManualDraw(handleAddCell);
   }
 
-  field = new Field(CELL_SIZE);
-
+  field.reset();
   field.drawField(model.state.field.dimension);
-
-  field.subscribeHandlerManualDraw(handleAddCell);
 }
 
 const handleChangeConfiguration = function(action, pattern = null) {
@@ -44,6 +44,11 @@ const handleAddCell = function(cell) {
   field.drawCell(cell);
 }
 
+const handleReset = function() {
+  field.reset();
+  field.drawField(model.state.field.dimension);
+}
+
 const init = function() {
   tabsView.render();
   dimensionView.render(model.state.field.dimension);
@@ -53,6 +58,7 @@ const init = function() {
 
   dimensionView.subscribeHandlerChangeDimension(handleChangeDimension);
   configurationView.subscribeHandlerChangeConfiguration(handleChangeConfiguration);
+  sidebarView.subscribeResetHandler(handleReset);
 
   field = new Field();
 

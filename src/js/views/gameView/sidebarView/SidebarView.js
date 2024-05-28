@@ -44,6 +44,18 @@ class SidebarView extends View {
       `
     );
   }
+
+  subscribeResetHandler(handler) {
+    this._parentElement.addEventListener('click', (event) => {
+      if (!event.target.classList.contains('sidebar__reset')) return;
+
+      handler();
+    });
+  }
+
+  subscribeStartHandler() {
+
+  }
 }
 
 export default new SidebarView();
