@@ -20,7 +20,11 @@ const state = {
   },
   characteristics: {
     currentGeneration: null,
-    generationTime: null
+    generationTime: {
+      start: null,
+      end: null,
+      full: null
+    }
   }
 };
 
@@ -163,7 +167,23 @@ const reset = function() {
   state.field.aliveCells = [];
 
   state.characteristics.currentGeneration = null;
-  state.characteristics.generationTime = null;
+
+  state.characteristics.generationTime = {
+    start: null,
+    end: null,
+    full: null
+  };
+}
+
+const setGenerationTimeStart = function() {
+  state.characteristics.generationTime.start = Date.now();
+}
+
+const setGenerationTimeEnd = function() {
+  state.characteristics.generationTime.end = Date.now();
+
+  state.characteristics.generationTime.full =
+    state.characteristics.generationTime.end - state.characteristics.generationTime.start;
 }
 
 export {
@@ -173,5 +193,7 @@ export {
   setFirstGenAliveCells,
   setNextGenAliveCells,
   changeStatus,
-  reset
+  reset,
+  setGenerationTimeStart,
+  setGenerationTimeEnd
 };

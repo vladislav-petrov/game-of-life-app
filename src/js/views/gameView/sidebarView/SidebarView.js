@@ -28,7 +28,7 @@ class SidebarView extends View {
               </span>
 
               <span class="characteristic-value">
-                ${generationTime ?? '-'}
+                ${generationTime.full !== null ? `${generationTime.full} мс` : '-'}
               </span>
             </div>
           </div>

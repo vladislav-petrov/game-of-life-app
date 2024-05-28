@@ -66,6 +66,8 @@ const handleReset = function() {
 const tick = function() {
   if (model.state.status === 'idle') return;
 
+  model.setGenerationTimeStart();
+
   model.setNextGenAliveCells();
 
   if (model.state.status === 'active') {
@@ -73,11 +75,13 @@ const tick = function() {
       requestAnimationFrame(tick);
     }, NEXT_GEN_TIME);
 
-    sidebarView.update();
-
     field.reset();
     field.drawField(model.state.field.dimension);
     field.drawCells(model.state.field.aliveCells);
+
+    model.setGenerationTimeEnd();
+
+    sidebarView.update();
 
     return;
   }
