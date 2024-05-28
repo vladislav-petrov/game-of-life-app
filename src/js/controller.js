@@ -13,23 +13,27 @@ import Field from './field/Field.js';
 let field;
 
 const handleChangeDimension = function(dimension) {
+  const oldDimension = model.state.field.dimension;
+  const newDimension = dimension;
+
   model.reset();
-  model.setFieldDimension(dimension);
+  model.setFieldDimension(newDimension);
 
-  dimensionView.update(model.state);
-  sidebarView.update(model.state);
-
-  // Если размерность поля больше 100 -
-  // рендерим канвас большего размера
-  if (model.state.field.dimension > 100) {
+  if (
+    (oldDimension <= 100 && newDimension > 100) ||
+    (oldDimension > 100 && newDimension <= 100)
+  ) {
     fieldView.render(model.state);
 
-    field = new Field(CELL_SIZE);
+    field = new Field();
     field.subscribeHandlerManualDraw(handleAddCell);
   }
 
   field.reset();
   field.drawField(model.state.field.dimension);
+
+  dimensionView.update(model.state);
+  sidebarView.update(model.state);
 }
 
 const handleChangeConfiguration = function(action, pattern = null) {
