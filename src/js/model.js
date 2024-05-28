@@ -137,14 +137,14 @@ const setNextGenAliveCells = function() {
   const isGameOver = checkIsGameOver(nextGenAliveCells);
 
   if (isGameOver) {
-    state.status = 'idle';
+    changeStatus();
   }
 
   state.field.aliveCells = [ ...nextGenAliveCells ];
   state.characteristics.currentGeneration++;
 }
 
-const setStatus = function() {
+const changeStatus = function() {
   state.status = state.status === 'idle' ? 'active' : 'idle';
 
   if (state.status === 'idle') {
@@ -165,6 +165,6 @@ export {
   addCell,
   setFirstGenAliveCells,
   setNextGenAliveCells,
-  setStatus,
+  changeStatus,
   reset
 };

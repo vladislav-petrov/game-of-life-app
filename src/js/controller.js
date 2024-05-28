@@ -75,15 +75,18 @@ const tick = function() {
 
     return;
   }
+
+  dimensionView.update(model.state);
+  configurationView.update(model.state);
 }
 
 const handleStart = function() {
-  model.setStatus();
+  model.changeStatus();
 
   dimensionView.update(model.state);
   configurationView.update(model.state);
 
-  setTimeout(tick, NEXT_GEN_TIME);
+  tick();
 }
 
 const init = function() {
